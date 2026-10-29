@@ -17,6 +17,7 @@ export const en: Record<string, string> = {
   'Balkan': 'Balkans',
   'Alexandroupoli': 'Alexandroupoli',
   '175.000': '175,000',
+  '7.000': '7,000',
   'Hektar verbranntes Land meldete die EU-Kommission. Etwa zwei Dutzend Menschen sind den Bränden zum Opfer gefallen.':
     'hectares of burned land were reported by the European Commission. About two dozen people lost their lives in the fires.',
   'Verkohlte Rinde, Nahaufnahme': 'Charred bark, close-up',
@@ -111,7 +112,6 @@ export const en: Record<string, string> = {
   'NPD-Demo in Hannover': 'NPD rally in Hanover',
   'Kameraleute und Reporter in der Menge': 'Camera operators and reporters in the crowd',
   'Polizeikette bei Nacht vor dem Neuen Rathaus': 'Police line at night in front of the New Town Hall',
-  'Hannover, 23. November 2019': 'Hanover, 23 November 2019',
   'Leere Straße mit Laub und Polizeiwagen vor einem Wohnblock': 'Empty street with leaves and police vans in front of an apartment block',
   'Wasserwerfer und Polizeiwagen in einer Straße': 'Water cannon and police vans in a street',
   'Polizeikette vor einem Gebäude': 'Police line in front of a building',
@@ -129,5 +129,18 @@ export const en: Record<string, string> = {
   'Lange Polizeikette bei Nacht': 'Long police line at night',
   'Berittene Polizei bei Nacht neben einem Wasserwerfer': 'Mounted police at night next to a water cannon',
   'Polizisten auf den Rolltreppen einer U-Bahn-Station': 'Police officers on the escalators of a subway station',
-  'Polizisten fahren die Rolltreppe hinunter': 'Police officers riding down the escalator',
+  'Am 23. November 2019 zieht die NPD durch die Südstadt von Hannover. Ihr Protest richtet sich gegen die Presse: Namentlich greift sie den NDR-Reporter Julian Feldmann, den Journalisten David Janzen und den Fotografen André Aden an, die über die rechtsextreme Szene berichten.':
+    'On 23 November 2019, the far-right NPD marches through the Südstadt district of Hanover. Its protest is aimed at the press: by name, it targets NDR reporter Julian Feldmann, journalist David Janzen and photographer André Aden, who report on the far-right scene.',
+  'Die Polizei hatte die Demonstration zunächst verboten. Sie sah eine unmittelbare Gefahr für die öffentliche Sicherheit, das Innenministerium auch für die Pressefreiheit. Das Verwaltungsgericht und das Oberverwaltungsgericht hoben das Verbot auf: Ein komplettes Verbot sei nicht verhältnismäßig.':
+    'The police had initially banned the demonstration, seeing an immediate threat to public safety, and the interior ministry also to press freedom. The administrative court and the higher administrative court lifted the ban: a complete ban was not proportionate, they ruled.',
+  'Ein Anlass war Feldmanns Recherche über Karl Münter. Der frühere SS-Mann war 1944 am Massaker im französischen Ascq beteiligt und starb im September 2019 mit 96 Jahren. In den Tagen vor der Demo tauchten in Hannover Flyer mit der Parole „Rache für Karl“ auf.':
+    'One trigger was Feldmann’s reporting on Karl Münter. The former SS man took part in the 1944 massacre in Ascq, France, and died in September 2019 at the age of 96. In the days before the rally, flyers reading “Revenge for Karl” appeared in Hanover.',
+  'Auf den Transparenten: „Gerechtigkeit für Karl“, ein durchgestrichenes Foto mit „Weg mit Feldmann“ und Schilder gegen den Rundfunkbeitrag.':
+    'On the banners: “Justice for Karl”, a crossed-out photo reading “Away with Feldmann” and signs against the public broadcasting fee.',
+  'Menschen kamen laut Polizei zu den Gegendemonstrationen. Bei der NPD waren es rund 110.':
+    'people joined the counter-protests, according to the police. The NPD drew around 110.',
+  'Zur zentralen Gegenkundgebung rief das Bündnis „bunt statt braun“ auf. Dort sprachen Innenminister Boris Pistorius und Oberbürgermeister Belit Onay, auch Ministerpräsident Stephan Weil war dabei.':
+    'The alliance “bunt statt braun” called for the main counter-rally. Lower Saxony’s interior minister Boris Pistorius and mayor Belit Onay spoke there, and minister-president Stephan Weil joined too.',
+  'Laut Polizei blieb es weitgehend friedlich. Am Rand des NPD-Zugs kam es immer wieder zu Rangeleien mit Gegendemonstranten, vier Menschen wurden festgenommen.':
+    'According to the police, it stayed largely peaceful. On the edge of the NPD march there were repeated scuffles with counter-protesters, and four people were arrested.',
 };

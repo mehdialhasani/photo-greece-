@@ -357,6 +357,10 @@ figure img { width: 100%; }
   .next { height: 60svh; }
 }
 
+/* Three stories leave no room for the about link on phones, it stays on the start page */
+@media (max-width: 440px) {
+  .bar-about { display: none; }
+}
 @media (max-width: 400px) {
   .v-a .bar-home { font-size: 1.125rem; }
   .bar-nav a { padding: 10px 5px; font-size: .8125rem; }
