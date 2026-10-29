@@ -104,36 +104,62 @@ function setupSign() {
   });
 }
 
-// Satellite map: the stills replace each other with a zoom. Going deeper the old still grows
-// and fades while the next one settles in behind it; back to the start the other way.
+// Satellite tiles from Esri World Imagery with place names on top. Leaflet and the tiles only
+// load once a map comes near the screen. When most of it is visible it flies from the wide view
+// into the area; the button flies again.
+type MapView = { center: [number, number]; zoom: number; label: string };
 function setupMaps() {
-  document.querySelectorAll<HTMLElement>('[data-map]').forEach((map) => {
-    const stills = [...map.querySelectorAll<HTMLImageElement>(':scope > img')];
-    const label = map.querySelector<HTMLElement>('.map-label')!;
-    const dots = [...map.querySelectorAll<HTMLElement>('.map-dots span')];
-    const next = map.querySelector<HTMLButtonElement>('.map-next')!;
-    let current = 0;
-    const go = () => {
-      const from = stills[current];
-      current = (current + 1) % stills.length;
-      const to = stills[current];
-      const deeper = current > 0;
-      to.style.transition = 'none';
-      to.style.transform = `scale(${deeper ? 1.12 : 1.6})`;
-      void to.offsetWidth;
-      to.style.transition = '';
-      to.style.transform = '';
-      from.style.transform = `scale(${deeper ? 2.4 : 0.85})`;
-      from.classList.remove('on');
-      to.classList.add('on');
-      label.textContent = to.alt;
-      dots.forEach((d, i) => d.classList.toggle('on', i === current));
-      const last = current === stills.length - 1;
-      next.classList.toggle('back', last);
-      next.setAttribute('aria-label', last ? 'Zurück zur Übersicht' : 'Näher heranzoomen');
-    };
-    map.addEventListener('click', go);
-  });
+  const maps = [...document.querySelectorAll<HTMLElement>('[data-map]')];
+  const load = new IntersectionObserver(async (entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      load.unobserve(entry.target);
+      const el = entry.target as HTMLElement;
+      const { from, to, pin } = JSON.parse(el.dataset.map!) as { from: MapView; to: MapView; pin?: [number, number] };
+      const L = (await import('leaflet')).default;
+      const map = L.map(el.querySelector<HTMLElement>('.map-canvas')!, {
+        zoomControl: false,
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        zoomSnap: 0,
+      }).setView(from.center, from.zoom);
+      map.attributionControl.setPrefix(false);
+      const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services';
+      L.tileLayer(`${esri}/World_Imagery/MapServer/tile/{z}/{y}/{x}`, {
+        maxZoom: 18,
+        attribution: 'Satellitenbild: Esri, Maxar, Earthstar Geographics',
+      }).addTo(map);
+      L.tileLayer(`${esri}/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 18 }).addTo(map);
+      if (pin) L.marker(pin, { icon: L.divIcon({ className: 'map-pin', iconSize: [20, 20] }), keyboard: false, interactive: false }).addTo(map);
+
+      const label = el.querySelector<HTMLElement>('.map-label')!;
+      const again = el.querySelector<HTMLButtonElement>('.map-again')!;
+      const fly = () => {
+        again.hidden = true;
+        label.textContent = from.label;
+        map.setView(from.center, from.zoom, { animate: false });
+        if (reduceMotion) map.setView(to.center, to.zoom, { animate: false });
+        else map.flyTo(to.center, to.zoom, { duration: 6, easeLinearity: 0.15 });
+        map.once('moveend', () => {
+          label.textContent = to.label;
+          again.hidden = false;
+        });
+      };
+      again.addEventListener('click', fly);
+      // Start once most of the map is on screen
+      const start = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return;
+        start.disconnect();
+        setTimeout(fly, 400);
+      }, { threshold: 0.6 });
+      start.observe(el);
+    }
+  }, { rootMargin: '400px' });
+  maps.forEach((el) => load.observe(el));
 }
 
 function setupCarousel() {
