@@ -1,0 +1,23 @@
+---
+import data from '../data/pages.json';
+import Widget from './Widget.astro';
+
+interface Props {
+  page: number;
+}
+
+const page = data.pages[Astro.props.page];
+---
+<div class="viewer" style={`--page-h:${page.height};background:${page.bg}`}>
+  <div class="stage" style={`width:${data.width}px;height:${page.height}px`}>
+    {page.widgets.map((w) => <Widget w={w} />)}
+  </div>
+</div>
+<div class="fixed-layer" style={`width:${data.width}px`}>
+  {data.global.map((w) => <Widget w={w} />)}
+</div>
+<div class="lightbox" hidden><img alt="" /></div>
+<script>
+  import { init } from '../scripts/readymag';
+  init();
+</script>

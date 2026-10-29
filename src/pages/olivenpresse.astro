@@ -1,11 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import Story from '../components/Story.astro';
 ---
-<Base title="Makris | Olives">
-  <header class="story-cover">
-    <h1 data-reveal>Makris | Olives</h1>
-  </header>
-  <section class="story-text">
-    <p data-reveal>Inhalt folgt aus dem Readymag-Export.</p>
-  </section>
+<Base title="Makris | Olives" image="img/14-1600.webp">
+  <Story page={1} />
 </Base>

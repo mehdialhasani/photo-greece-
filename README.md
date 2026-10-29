@@ -1,1 +1,26 @@
-# photo-greece-
+# Fotostorys aus Griechenland
+
+Nachbau der Readymag-Fotostorys „Wildfires | Greece“ und „Makris | Olives“ als eigene Website mit [Astro](https://astro.build) und [Lenis](https://lenis.darkroom.engineering).
+
+## Aufbau
+
+- `readymag-export/` – Texte, Animationen und Rohdaten aus dem Readymag-Projekt. Die Originalfotos (`medien/`) sind wegen der Größe nicht im Repository.
+- `scripts/readymag-to-data.py` – wandelt `projektdaten.json` in `src/data/pages.json` um (Positionen, Texte, Animationen).
+- `scripts/optimize-images.py` – schneidet die Originalfotos zu und legt Webversionen in `public/img/` ab.
+- `src/scripts/readymag.ts` – spielt die Readymag-Animationen nach (Scroll, Klick, Laden, Hover).
+
+## Entwickeln
+
+```sh
+npm install
+npm run dev
+```
+
+Nach Änderungen an den Rohdaten oder Fotos:
+
+```sh
+python3 scripts/readymag-to-data.py
+python3 scripts/optimize-images.py   # braucht readymag-export/medien/ und Pillow
+```
+
+Jeder Push auf `main` veröffentlicht die Seite über GitHub Pages.

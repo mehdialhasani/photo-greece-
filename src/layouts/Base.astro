@@ -1,13 +1,17 @@
 ---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/bebas-neue/400.css';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description = 'Fotostorys von Mehdi Alhasani' } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { title, description = 'Fotostorys von Mehdi Alhasani über die Waldbrände in Griechenland und eine Olivenpresse in Makri.', image } = Astro.props;
+const ogImage = image ? new URL(image, Astro.site).href : undefined;
 ---
 <!doctype html>
 <html lang="de">
@@ -18,20 +22,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
   </head>
   <body>
-    <nav class="menu">
-      <button class="menu__toggle" aria-expanded="false" aria-controls="menu-links" aria-label="Menü öffnen">
-        <span></span><span></span>
-      </button>
-      <ul id="menu-links" class="menu__links" hidden>
-        <li><a href={`${base}/waldbraende/`}>wildfires</a></li>
-        <li><a href={`${base}/olivenpresse/`}>olive oil</a></li>
-      </ul>
-    </nav>
     <slot />
-    <script>
-      import '../scripts/scroll.ts';
-    </script>
   </body>
 </html>

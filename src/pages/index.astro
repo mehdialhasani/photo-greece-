@@ -1,13 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+import Story from '../components/Story.astro';
 ---
-<Base title="Fotostorys aus Griechenland">
-  <main class="story-text">
-    <h1 data-reveal>Fotostorys aus Griechenland</h1>
-    <p data-reveal data-delay="0.2">
-      <a href={`${base}/waldbraende/`}>Wildfires | Greece</a><br />
-      <a href={`${base}/olivenpresse/`}>Makris | Olives</a>
-    </p>
-  </main>
+<Base title="Wildfires | Greece" image="img/01-1600.webp">
+  <Story page={0} />
 </Base>
