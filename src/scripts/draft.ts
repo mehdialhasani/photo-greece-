@@ -2,7 +2,7 @@ import Lenis from 'lenis';
 
 // Interactions for the redesigned drafts: reveal on scroll, the sign lettering, parallax,
 // reading progress, the menu bar, info toggles, carousel counter, count-up facts,
-// lightbox and lazily embedded video.
+// lightbox, the regrowth timeline, the sign close-up, satellite maps and lazily embedded video.
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (t: number) => Math.min(1, Math.max(0, t));
@@ -49,6 +49,90 @@ function setupInfo() {
       button.setAttribute('aria-expanded', String(open));
       button.closest('.frame')?.classList.toggle('open', open);
     });
+  });
+}
+
+// One step is active at a time: the last text that has passed the middle of the screen.
+// Clicking the photo or a dash jumps to the next or that step.
+// On phones the photo sticks to the top, so texts count from its lower edge
+let scrollTo = (el: HTMLElement, offset: number) => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - offset, behavior: reduceMotion ? 'auto' : 'smooth' });
+const phone = window.matchMedia('(max-width: 767px)');
+const timelines: (() => void)[] = [];
+function setupTimeline() {
+  document.querySelectorAll<HTMLElement>('[data-timeline]').forEach((timeline) => {
+    const photos = [...timeline.querySelectorAll<HTMLElement>('.timeline-stage img')];
+    const dots = [...timeline.querySelectorAll<HTMLElement>('.timeline-dots button')];
+    const steps = [...timeline.querySelectorAll<HTMLElement>('.timeline-step')];
+    const stage = timeline.querySelector<HTMLElement>('.timeline-stage')!;
+    const top = () => (phone.matches ? stage.getBoundingClientRect().bottom : window.innerHeight * 0.3);
+    const go = (i: number) => scrollTo(steps[i], top());
+    let current = -1;
+    const show = (index: number) => {
+      if (index === current) return;
+      current = index;
+      photos.forEach((p, i) => p.classList.toggle('on', i === index));
+      steps.forEach((s, i) => s.classList.toggle('on', i === index));
+      timeline.classList.toggle('end', index === steps.length - 1);
+      dots.forEach((d, i) => (i === index ? d.setAttribute('aria-current', 'step') : d.removeAttribute('aria-current')));
+    };
+    dots.forEach((dot, i) => dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      go(i);
+    }));
+    stage.addEventListener('click', () => go((current + 1) % steps.length));
+    timelines.push(() => {
+      const line = phone.matches ? top() + window.innerHeight * 0.12 : window.innerHeight * 0.62;
+      let index = 0;
+      steps.forEach((step, i) => {
+        if (step.getBoundingClientRect().top < line) index = i;
+      });
+      show(index);
+    });
+  });
+}
+
+function setupSign() {
+  document.querySelectorAll<HTMLElement>('[data-sign]').forEach((sign) => {
+    const button = sign.querySelector<HTMLButtonElement>('.sign-photo')!;
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(open));
+      button.setAttribute('aria-label', open ? 'Zurück zum Schild' : 'Detail ansehen');
+      sign.classList.toggle('detail', open);
+      sign.querySelector('.sign-hint')!.textContent = open ? 'Zurück zum Schild' : 'Detail ansehen';
+    });
+  });
+}
+
+// Satellite map: the stills replace each other with a zoom. Going deeper the old still grows
+// and fades while the next one settles in behind it; back to the start the other way.
+function setupMaps() {
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((map) => {
+    const stills = [...map.querySelectorAll<HTMLImageElement>(':scope > img')];
+    const label = map.querySelector<HTMLElement>('.map-label')!;
+    const dots = [...map.querySelectorAll<HTMLElement>('.map-dots span')];
+    const next = map.querySelector<HTMLButtonElement>('.map-next')!;
+    let current = 0;
+    const go = () => {
+      const from = stills[current];
+      current = (current + 1) % stills.length;
+      const to = stills[current];
+      const deeper = current > 0;
+      to.style.transition = 'none';
+      to.style.transform = `scale(${deeper ? 1.12 : 1.6})`;
+      void to.offsetWidth;
+      to.style.transition = '';
+      to.style.transform = '';
+      from.style.transform = `scale(${deeper ? 2.4 : 0.85})`;
+      from.classList.remove('on');
+      to.classList.add('on');
+      label.textContent = to.alt;
+      dots.forEach((d, i) => d.classList.toggle('on', i === current));
+      const last = current === stills.length - 1;
+      next.classList.toggle('back', last);
+      next.setAttribute('aria-label', last ? 'Zurück zur Übersicht' : 'Näher heranzoomen');
+    };
+    map.addEventListener('click', go);
   });
 }
 
@@ -108,36 +192,48 @@ function setupVideos() {
   document.querySelectorAll<HTMLElement>('[data-youtube]').forEach((el) => observer.observe(el));
 }
 
-// Scroll-linked values, written as CSS custom properties so the styles decide what moves
-function update() {
-  const vh = window.innerHeight;
-  const root = document.documentElement;
-  const max = root.scrollHeight - vh;
-  root.style.setProperty('--read', String(max > 0 ? clamp(window.scrollY / max) : 0));
+// Scroll-linked values, written as CSS custom properties so the styles decide what moves.
+// Set on the elements themselves, not on <html>, so a frame only restyles what moves.
+// Elements are looked up once and the work only runs when the scroll position or window changes.
+type Scroller = { el: HTMLElement; prop: string; value: (rect: DOMRect, vh: number) => number };
+const scrollers: Scroller[] = [];
+let bar: HTMLElement | null = null;
+let hero: HTMLElement | null = null;
 
-  const hero = document.querySelector<HTMLElement>('[data-hero]');
-  if (hero) root.style.setProperty('--hero', String(clamp(window.scrollY / hero.offsetHeight)));
-
+function collect() {
+  bar = document.querySelector<HTMLElement>('.bar');
+  hero = document.querySelector<HTMLElement>('[data-hero]');
   // The letters complete the sign between the photo entering the lower part of the screen
   // and its centre reaching the upper third
-  document.querySelectorAll<HTMLElement>('[data-sign]').forEach((sign) => {
-    const rect = sign.getBoundingClientRect();
-    const center = rect.top + rect.height / 2;
-    sign.style.setProperty('--p', reduceMotion ? '1' : String(clamp((vh * 0.95 - center) / (vh * 0.55))));
-  });
+  document.querySelectorAll<HTMLElement>('[data-sign]').forEach((el) =>
+    scrollers.push({ el, prop: '--p', value: (rect, vh) => (reduceMotion ? 1 : clamp((vh * 0.95 - rect.top - rect.height / 2) / (vh * 0.55))) }));
+  document.querySelectorAll<HTMLElement>('[data-drift]').forEach((el) =>
+    scrollers.push({ el, prop: '--d', value: (rect, vh) => clamp((vh - rect.top) / (vh + rect.height)) * 2 - 1 }));
+  document.querySelectorAll<HTMLElement>('[data-scrollzoom]').forEach((el) =>
+    scrollers.push({ el, prop: '--z', value: (rect, vh) => clamp((vh - rect.top) / (vh + rect.height)) }));
+}
 
-  document.querySelectorAll<HTMLElement>('[data-drift]').forEach((drift) => {
-    const rect = drift.getBoundingClientRect();
-    drift.style.setProperty('--d', String(clamp((vh - rect.top) / (vh + rect.height)) * 2 - 1));
-  });
+function update() {
+  const vh = window.innerHeight;
+  const y = window.scrollY;
+  const max = document.documentElement.scrollHeight - vh;
+  bar?.style.setProperty('--read', (max > 0 ? clamp(y / max) : 0).toFixed(4));
+  if (hero && y < hero.offsetHeight * 1.2) hero.style.setProperty('--hero', clamp(y / hero.offsetHeight).toFixed(4));
+
+  for (const s of scrollers) {
+    const rect = s.el.getBoundingClientRect();
+    // Off screen nothing moves
+    if (rect.bottom < -vh * 0.2 || rect.top > vh * 1.2) continue;
+    s.el.style.setProperty(s.prop, s.value(rect, vh).toFixed(4));
+  }
+
+  timelines.forEach((check) => check());
 }
 
 let lastY = 0;
 function updateBar() {
   const y = window.scrollY;
-  const bar = document.querySelector<HTMLElement>('.bar');
   if (!bar) return;
-  const hero = document.querySelector<HTMLElement>('[data-hero]');
   bar.classList.toggle('solid', y > (hero?.offsetHeight ?? 0) - 80);
   // Hide the bar while reading downwards, bring it back on the way up
   if (Math.abs(y - lastY) > 6) {
@@ -146,25 +242,47 @@ function updateBar() {
   }
 }
 
+// A link from the other story opens this one at the top, also where the browser
+// would otherwise keep the old scroll position. Back and reload keep their position.
+function startAtTop() {
+  const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+  if (location.hash || (nav && nav.type !== 'navigate')) return false;
+  window.scrollTo(0, 0);
+  return true;
+}
+
 export function init() {
+  const top = startAtTop();
+  collect();
   setupReveal();
   setupLightbox();
   setupInfo();
+  setupTimeline();
+  setupSign();
+  setupMaps();
   setupCarousel();
   setupCount();
   setupVideos();
 
-  const frame = () => {
+  let seenY = -1;
+  let seenH = -1;
+  const frame = (force = false) => {
+    if (!force && window.scrollY === seenY && window.innerHeight === seenH) return;
+    seenY = window.scrollY;
+    seenH = window.innerHeight;
     update();
     updateBar();
   };
   if (reduceMotion) {
-    window.addEventListener('scroll', frame, { passive: true });
-    window.addEventListener('resize', frame);
-    frame();
+    window.addEventListener('scroll', () => frame(), { passive: true });
+    window.addEventListener('resize', () => frame(true));
+    frame(true);
     return;
   }
   const lenis = new Lenis({ lerp: 0.12 });
+  if (top) lenis.scrollTo(0, { immediate: true, force: true });
+  scrollTo = (el, offset) => lenis.scrollTo(el, { offset: -offset });
+  window.addEventListener('resize', () => frame(true));
   const raf = (time: number) => {
     lenis.raf(time);
     frame();

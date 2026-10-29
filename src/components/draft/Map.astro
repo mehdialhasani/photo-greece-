@@ -1,0 +1,25 @@
+---
+interface Props {
+  label: string;
+  steps: { img: string; label: string }[];
+  width: number;
+  height: number;
+}
+
+// The satellite map from the Readymag story: stills of its zoom levels (taken from the screen
+// recording, in public/img/map-*.webp). A click zooms from one to the next, the last one back out.
+const { label, steps, width, height } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section class="map" data-map aria-label={label} style={`aspect-ratio:${width}/${height}`} data-reveal>
+  {steps.map((step, i) => (
+    <img src={`${base}/img/map-${step.img}.webp`} width={width} height={height} alt={step.label} loading="lazy" decoding="async" class={i === 0 ? 'on' : undefined} />
+  ))}
+  <div class="map-ui">
+    <p class="kicker map-label" aria-live="polite">{steps[0].label}</p>
+    <div class="map-dots" aria-hidden="true">
+      {steps.map((_, i) => <span class={i === 0 ? 'on' : undefined}></span>)}
+    </div>
+    <button type="button" class="map-next" aria-label="Näher heranzoomen"><span aria-hidden="true">→</span></button>
+  </div>
+</section>
