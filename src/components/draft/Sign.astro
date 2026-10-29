@@ -4,22 +4,26 @@ import Pic from './Pic.astro';
 
 interface Props {
   photo: Photo;
+  detail: { photo: Photo; caption: string };
 }
 
 // The sign in photo 2 is cut off at the right edge after "Αλεξα" and "Alexa". The missing
 // letters continue the lettering outside the picture and appear one by one while scrolling.
 // Positions are measured on the photo, in percent of its width (cqw): left edge of the first
 // cut-off letter, baseline and x-height of each line.
+// Clicking the sign opens a close-up in the same frame.
 const lines = [
   { rest: 'νδρουπολη', left: 96.6, baseline: 60.6, lang: 'el' },
   { rest: 'ndroupoli', left: 92.8, baseline: 81.9, lang: 'de' },
 ];
 // Both lines are written at the same time, letter by letter
 const longest = Math.max(...lines.map((line) => line.rest.length));
+const { photo, detail } = Astro.props;
 ---
-<div class="sign" data-sign style={`--letters:${longest}`}>
-  <div class="sign-photo">
-    <Pic photo={Astro.props.photo} sizes="(max-width: 767px) 50vw, 420px" />
+<figure class="sign" data-sign style={`--letters:${longest}`}>
+  <button type="button" class="sign-photo" aria-pressed="false" aria-label="Detail ansehen">
+    <Pic photo={photo} sizes="(max-width: 767px) 50vw, 420px" zoom={false} />
+    <Pic photo={detail.photo} sizes="(max-width: 767px) 50vw, 420px" zoom={false} class="sign-detail" />
     {lines.map((line) => (
       <span class="sign-line" lang={line.lang} style={`--left:${line.left};--baseline:${line.baseline}`} aria-hidden="true">
         <span class="sign-word">
@@ -27,6 +31,10 @@ const longest = Math.max(...lines.map((line) => line.rest.length));
         </span>
       </span>
     ))}
-  </div>
+  </button>
+  <figcaption>
+    <span class="sign-hint">Detail ansehen</span>
+    <span class="sign-caption">{detail.caption}</span>
+  </figcaption>
   <h2 class="sr-only">Αλεξανδρουπολη / Alexandroupoli</h2>
-</div>
+</figure>

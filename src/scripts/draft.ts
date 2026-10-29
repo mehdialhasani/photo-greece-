@@ -2,7 +2,7 @@ import Lenis from 'lenis';
 
 // Interactions for the redesigned drafts: reveal on scroll, the sign lettering, parallax,
 // reading progress, the menu bar, info toggles, carousel counter, count-up facts,
-// lightbox, the regrowth timeline and lazily embedded video.
+// lightbox, the regrowth timeline, the sign close-up, satellite maps and lazily embedded video.
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (t: number) => Math.min(1, Math.max(0, t));
@@ -72,6 +72,7 @@ function setupTimeline() {
       current = index;
       photos.forEach((p, i) => p.classList.toggle('on', i === index));
       steps.forEach((s, i) => s.classList.toggle('on', i === index));
+      timeline.classList.toggle('end', index === steps.length - 1);
       dots.forEach((d, i) => (i === index ? d.setAttribute('aria-current', 'step') : d.removeAttribute('aria-current')));
     };
     dots.forEach((dot, i) => dot.addEventListener('click', (e) => {
@@ -88,6 +89,73 @@ function setupTimeline() {
       show(index);
     });
   });
+}
+
+function setupSign() {
+  document.querySelectorAll<HTMLElement>('[data-sign]').forEach((sign) => {
+    const button = sign.querySelector<HTMLButtonElement>('.sign-photo')!;
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(open));
+      button.setAttribute('aria-label', open ? 'Zurück zum Schild' : 'Detail ansehen');
+      sign.classList.toggle('detail', open);
+    });
+  });
+}
+
+// Satellite tiles from Esri World Imagery with place names on top. Leaflet and the tiles
+// only load once a map comes near the screen. A click flies on to the next view.
+type MapStep = { center: [number, number]; zoom: number; label: string };
+function setupMaps() {
+  const observer = new IntersectionObserver(async (entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      observer.unobserve(entry.target);
+      const el = entry.target as HTMLElement;
+      const { steps, pin } = JSON.parse(el.dataset.map!) as { steps: MapStep[]; pin?: [number, number] };
+      const L = (await import('leaflet')).default;
+      const map = L.map(el.querySelector<HTMLElement>('.map-canvas')!, {
+        zoomControl: false,
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        attributionControl: true,
+        zoomSnap: 0.25,
+      }).setView(steps[0].center, steps[0].zoom);
+      map.attributionControl.setPrefix(false);
+      const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services';
+      L.tileLayer(`${esri}/World_Imagery/MapServer/tile/{z}/{y}/{x}`, {
+        maxZoom: 18,
+        attribution: 'Satellitenbild: Esri, Maxar, Earthstar Geographics',
+      }).addTo(map);
+      L.tileLayer(`${esri}/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 18 }).addTo(map);
+      if (pin) L.marker(pin, { icon: L.divIcon({ className: 'map-pin', iconSize: [22, 22] }), keyboard: false, interactive: false }).addTo(map);
+
+      const label = el.querySelector<HTMLElement>('.map-label')!;
+      const dots = [...el.querySelectorAll<HTMLElement>('.map-dots span')];
+      const next = el.querySelector<HTMLButtonElement>('.map-next')!;
+      let current = 0;
+      const go = () => {
+        current = (current + 1) % steps.length;
+        const step = steps[current];
+        if (current === 0 || reduceMotion) map.setView(step.center, step.zoom, { animate: !reduceMotion });
+        else map.flyTo(step.center, step.zoom, { duration: 2.4 });
+        label.textContent = step.label;
+        dots.forEach((d, i) => d.classList.toggle('on', i === current));
+        next.classList.toggle('back', current === steps.length - 1);
+        next.setAttribute('aria-label', current === steps.length - 1 ? 'Zurück zur Übersicht' : 'Näher heranzoomen');
+      };
+      next.addEventListener('click', (e) => {
+        e.stopPropagation();
+        go();
+      });
+      el.querySelector('.map-canvas')!.addEventListener('click', go);
+    }
+  }, { rootMargin: '300px' });
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((el) => observer.observe(el));
 }
 
 function setupCarousel() {
@@ -169,6 +237,11 @@ function update() {
     drift.style.setProperty('--d', String(clamp((vh - rect.top) / (vh + rect.height)) * 2 - 1));
   });
 
+  document.querySelectorAll<HTMLElement>('[data-scrollzoom]').forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--z', String(clamp((vh - rect.top) / (vh + rect.height))));
+  });
+
   timelines.forEach((check) => check());
 }
 
@@ -191,6 +264,8 @@ export function init() {
   setupLightbox();
   setupInfo();
   setupTimeline();
+  setupSign();
+  setupMaps();
   setupCarousel();
   setupCount();
   setupVideos();

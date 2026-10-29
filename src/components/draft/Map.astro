@@ -1,0 +1,23 @@
+---
+import 'leaflet/dist/leaflet.css';
+
+interface Props {
+  label: string;
+  steps: { center: [number, number]; zoom: number; label: string }[];
+  pin?: [number, number];
+}
+
+// Satellite map that flies to the next view on click, like the map in the Readymag story.
+// The tiles are loaded in the browser once the map comes near the screen (see setupMaps).
+const { label, steps, pin } = Astro.props;
+---
+<section class="map" data-map={JSON.stringify({ steps, pin })} aria-label={label} data-reveal>
+  <div class="map-canvas"></div>
+  <div class="map-ui">
+    <p class="kicker map-label" aria-live="polite">{steps[0].label}</p>
+    <div class="map-dots" aria-hidden="true">
+      {steps.map((_, i) => <span class={i === 0 ? 'on' : undefined}></span>)}
+    </div>
+    <button type="button" class="map-next" aria-label="Näher heranzoomen"><span aria-hidden="true">→</span></button>
+  </div>
+</section>
