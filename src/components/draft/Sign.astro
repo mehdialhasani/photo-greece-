@@ -1,10 +1,13 @@
 ---
 import type { Photo } from '../../content/stories';
 import Pic from './Pic.astro';
+import type { Lang } from '../../content/stories';
+import { ui } from '../../content/ui';
 
 interface Props {
   photo: Photo;
   detail: Photo;
+  lang: Lang;
 }
 
 // The sign in photo 2 is cut off at the right edge after "Αλεξα" and "Alexa". The missing
@@ -18,13 +21,14 @@ const lines = [
 ];
 // Both lines are written at the same time, letter by letter
 const longest = Math.max(...lines.map((line) => line.rest.length));
-const { photo, detail } = Astro.props;
+const { photo, detail, lang } = Astro.props;
+const t = ui[lang];
 ---
-<figure class="sign" data-sign style={`--letters:${longest}`}>
-  <button type="button" class="sign-photo" aria-pressed="false" aria-label="Detail ansehen">
+<figure class="sign" data-sign data-detail={t.detail} data-back={t.backToSign} style={`--letters:${longest}`}>
+  <button type="button" class="sign-photo" aria-pressed="false" aria-label={t.detail}>
     <Pic photo={photo} sizes="(max-width: 767px) 50vw, 420px" zoom={false} />
     <Pic photo={detail} sizes="(max-width: 767px) 50vw, 420px" zoom={false} class="sign-detail" />
-    <span class="sign-hint" aria-hidden="true">Detail ansehen</span>
+    <span class="sign-hint" aria-hidden="true">{t.detail}</span>
     {lines.map((line) => (
       <span class="sign-line" lang={line.lang} style={`--left:${line.left};--baseline:${line.baseline}`} aria-hidden="true">
         <span class="sign-word">

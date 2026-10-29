@@ -1,8 +1,11 @@
 ---
 import 'leaflet/dist/leaflet.css';
+import type { Lang } from '../../content/stories';
+import { ui } from '../../content/ui';
 
 type View = { center: [number, number]; zoom: number; label: string };
 interface Props {
+  lang: Lang;
   label: string;
   from: View;
   to: View;
@@ -13,13 +16,13 @@ interface Props {
 
 // Satellite map that zooms smoothly from a wide view into the area once it is on screen.
 // Leaflet and the tiles load in the browser when the map comes near (see setupMaps).
-const { label, from, to, pin, still } = Astro.props;
+const { lang, label, from, to, pin, still } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <section class="map" data-map={JSON.stringify({ from, to, pin })} aria-label={label} style={`--still:url(${base}/img/map-${still}.webp)`} data-reveal>
   <div class="map-canvas"></div>
   <div class="map-ui">
     <p class="kicker map-label" aria-live="polite">{from.label}</p>
-    <button type="button" class="map-again" aria-label="Nochmal heranzoomen" hidden><span aria-hidden="true">↻</span></button>
+    <button type="button" class="map-again" aria-label={ui[lang].mapAgain} hidden><span aria-hidden="true">↻</span></button>
   </div>
 </section>

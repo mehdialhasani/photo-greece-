@@ -1,0 +1,29 @@
+---
+import { getStories, type Lang } from '../../content/stories';
+import { ui } from '../../content/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+// Frame for the legal notice: the menu bar of the stories, the text, the footer
+const { lang } = Astro.props;
+const t = ui[lang];
+const stories = getStories(lang);
+const otherLang = lang === 'de' ? 'en' : 'de';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+<header class="bar solid">
+  <a class="bar-home" href={base + stories[0].path}>{t.home}</a>
+  <nav class="bar-nav" aria-label={t.stories}>
+    {stories.map((s) => <a href={base + s.path}>{s.slug === 'wildfires' ? t.wildfires : t.olives}</a>)}
+    <a class="bar-lang" href={base + ui[otherLang].legalPath} hreflang={otherLang} aria-label={t.otherLabel}>{t.other}</a>
+  </nav>
+</header>
+<main class="legal">
+  <slot />
+</main>
+<footer class="foot">
+  <span>© Mehdi Alhasani</span>
+  <a href={base + t.legalPath} aria-current="page">{t.legal}</a>
+</footer>

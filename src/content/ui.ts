@@ -1,0 +1,43 @@
+import type { Lang } from './stories';
+
+// Interface texts around the stories, per language
+export const ui = {
+  de: {
+    home: 'Fotostorys',
+    stories: 'Storys',
+    wildfires: 'Wildfires',
+    olives: 'Olivenöl',
+    more: 'Mehr erfahren',
+    morePhotos: (n: number) => `${n} weitere Bilder`,
+    next: 'Nächste Story',
+    mapAgain: 'Nochmal heranzoomen',
+    detail: 'Detail ansehen',
+    backToSign: 'Zurück zum Schild',
+    other: 'EN',
+    otherLabel: 'English version',
+    description: 'Fotostorys von Mehdi Alhasani über die Waldbrände in Griechenland und eine Olivenpresse in Makri.',
+    play: 'Video abspielen',
+    playNote: 'Lädt das Video von YouTube',
+    legal: 'Impressum & Datenschutz',
+    legalPath: 'impressum/',
+  },
+  en: {
+    home: 'Photo stories',
+    stories: 'Stories',
+    wildfires: 'Wildfires',
+    olives: 'Olive oil',
+    more: 'Learn more',
+    morePhotos: (n: number) => `${n} more photos`,
+    next: 'Next story',
+    mapAgain: 'Zoom in again',
+    detail: 'View detail',
+    backToSign: 'Back to the sign',
+    other: 'DE',
+    otherLabel: 'Deutsche Version',
+    description: 'Photo stories by Mehdi Alhasani about the wildfires in Greece and an olive press in Makri.',
+    play: 'Play video',
+    playNote: 'Loads the video from YouTube',
+    legal: 'Legal notice & privacy',
+    legalPath: 'en/legal/',
+  },
+} satisfies Record<Lang, unknown>;

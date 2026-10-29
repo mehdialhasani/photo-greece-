@@ -97,9 +97,10 @@ function setupSign() {
     button.addEventListener('click', () => {
       const open = button.getAttribute('aria-pressed') !== 'true';
       button.setAttribute('aria-pressed', String(open));
-      button.setAttribute('aria-label', open ? 'Zurück zum Schild' : 'Detail ansehen');
+      const text = open ? sign.dataset.back! : sign.dataset.detail!;
+      button.setAttribute('aria-label', text);
       sign.classList.toggle('detail', open);
-      sign.querySelector('.sign-hint')!.textContent = open ? 'Zurück zum Schild' : 'Detail ansehen';
+      sign.querySelector('.sign-hint')!.textContent = text;
     });
   });
 }
@@ -187,13 +188,16 @@ function setupCount() {
       const text = el.dataset.count!;
       const match = text.match(/[\d.,]+/);
       if (!match || reduceMotion) continue;
-      const target = parseFloat(match[0].replace(/\./g, '').replace(',', '.'));
-      const decimals = match[0].includes(',') ? 1 : 0;
+      // German numbers group with "." and use "," for decimals, English the other way round
+      const english = document.documentElement.lang === 'en';
+      const [group, decimal] = english ? [',', '.'] : ['.', ','];
+      const target = parseFloat(match[0].split(group).join('').replace(decimal, '.'));
+      const decimals = match[0].includes(decimal) ? 1 : 0;
       const start = performance.now();
       const step = (now: number) => {
         const t = clamp((now - start) / 1400);
         const value = target * (1 - Math.pow(1 - t, 3));
-        el.textContent = text.replace(match[0], value.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }));
+        el.textContent = text.replace(match[0], value.toLocaleString(english ? 'en-GB' : 'de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }));
         if (t < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
@@ -202,20 +206,18 @@ function setupCount() {
   document.querySelectorAll('[data-count]').forEach((el) => observer.observe(el));
 }
 
+// YouTube only loads after a click, so no data goes to YouTube before the reader wants the video
 function setupVideos() {
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      const el = entry.target as HTMLElement;
+  document.querySelectorAll<HTMLElement>('[data-youtube]').forEach((el) => {
+    el.querySelector('.video-play')?.addEventListener('click', () => {
       const id = el.dataset.youtube;
       el.insertAdjacentHTML(
         'beforeend',
-        `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&playsinline=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="${el.dataset.title}"></iframe>`,
+        `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="${el.dataset.title}"></iframe>`,
       );
-      observer.unobserve(el);
-    }
-  }, { rootMargin: '200px' });
-  document.querySelectorAll<HTMLElement>('[data-youtube]').forEach((el) => observer.observe(el));
+      el.querySelector('.video-play')?.remove();
+    });
+  });
 }
 
 // Scroll-linked values, written as CSS custom properties so the styles decide what moves.
