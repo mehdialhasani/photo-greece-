@@ -1,0 +1,32 @@
+---
+import type { Photo } from '../../content/stories';
+import Pic from './Pic.astro';
+
+interface Props {
+  photo: Photo;
+}
+
+// The sign in photo 2 is cut off at the right edge after "Αλεξα" and "Alexa". The missing
+// letters continue the lettering outside the picture and appear one by one while scrolling.
+// Positions are measured on the photo, in percent of its width (cqw): left edge of the first
+// cut-off letter, baseline and x-height of each line.
+const lines = [
+  { rest: 'νδρουπολη', left: 96.6, baseline: 60.6, lang: 'el' },
+  { rest: 'ndroupoli', left: 92.8, baseline: 81.9, lang: 'de' },
+];
+// Both lines are written at the same time, letter by letter
+const longest = Math.max(...lines.map((line) => line.rest.length));
+---
+<div class="sign" data-sign style={`--letters:${longest}`}>
+  <div class="sign-photo">
+    <Pic photo={Astro.props.photo} sizes="(max-width: 767px) 50vw, 420px" />
+    {lines.map((line) => (
+      <span class="sign-line" lang={line.lang} style={`--left:${line.left};--baseline:${line.baseline}`} aria-hidden="true">
+        <span class="sign-word">
+          {[...line.rest].map((letter, i) => <span style={`--i:${i}`}>{letter}</span>)}
+        </span>
+      </span>
+    ))}
+  </div>
+  <h2 class="sr-only">Αλεξανδρουπολη / Alexandroupoli</h2>
+</div>
