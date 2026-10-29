@@ -20,6 +20,8 @@ export const ui = {
     playNote: 'Lädt das Video von YouTube',
     legal: 'Impressum & Datenschutz',
     legalPath: 'impressum/',
+    homePath: '',
+    choose: 'Arbeiten',
   },
   en: {
     home: 'Photo stories',
@@ -39,5 +41,7 @@ export const ui = {
     playNote: 'Loads the video from YouTube',
     legal: 'Legal notice & privacy',
     legalPath: 'en/legal/',
+    homePath: 'en/',
+    choose: 'Work',
   },
 } satisfies Record<Lang, unknown>;

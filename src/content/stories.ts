@@ -60,7 +60,7 @@ export type Story = {
 const de: Story[] = [
   {
     slug: 'wildfires',
-    path: '',
+    path: 'waldbrand/',
     title: ['Wildfires', 'Greece'],
     kicker: 'Eine Fotostory aus Griechenland',
     hero: photo(1, 'Verbrannte Landschaft mit kahlen Bäumen'),
@@ -239,8 +239,8 @@ export type Lang = 'de' | 'en';
 
 // Where each story lives per language, relative to the site root
 const paths: Record<Lang, Record<string, string>> = {
-  de: { wildfires: '', olives: 'olivenpresse/' },
-  en: { wildfires: 'en/', olives: 'en/olive-press/' },
+  de: { wildfires: 'waldbrand/', olives: 'olivenpresse/' },
+  en: { wildfires: 'en/wildfires/', olives: 'en/olive-press/' },
 };
 
 // Text fields that are shown to readers. Story titles are English in both languages.
