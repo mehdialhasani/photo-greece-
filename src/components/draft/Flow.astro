@@ -1,0 +1,191 @@
+---
+import { stories } from '../../content/stories';
+import Pic from './Pic.astro';
+import Sign from './Sign.astro';
+
+interface Props {
+  slug: string;
+  // a: light editorial layout with a top bar, b: dark cinematic layout with a floating menu
+  variant: 'a' | 'b';
+}
+
+const { slug, variant } = Astro.props;
+const story = stories.find((s) => s.slug === slug)!;
+const next = stories.find((s) => s.slug !== slug)!;
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/entwurf-${variant}/`;
+const half = '(max-width: 767px) 100vw, 50vw';
+let infoId = 0;
+---
+<header class="bar">
+  <a class="bar-home" href={base}>Fotostorys</a>
+  <nav class="bar-nav" aria-label="Storys">
+    {stories.map((s) => (
+      <a href={base + s.path} aria-current={s.slug === slug ? 'page' : undefined}>{s.slug === 'wildfires' ? 'Wildfires' : 'Olivenöl'}</a>
+    ))}
+  </nav>
+  <span class="bar-progress" aria-hidden="true"></span>
+</header>
+
+<main>
+  <section class="hero" data-hero>
+    <div class="hero-media" data-parallax>
+      <Pic photo={story.hero} sizes="100vw" eager zoom={false} />
+    </div>
+    <div class="hero-text">
+      <p class="kicker">{story.kicker}</p>
+      <h1 class="title">{story.title[0]}<span class="title-sep" aria-hidden="true"></span><span class="sr-only"> | </span>{story.title[1]}</h1>
+    </div>
+    <span class="scroll-hint" aria-hidden="true"></span>
+  </section>
+
+  <article class="story">
+    {story.blocks.map((block) => {
+      switch (block.type) {
+        case 'lead':
+          return <p class="lead" data-reveal>{block.text}</p>;
+        case 'text':
+          return <div class="text" data-reveal>{block.text.map((p) => <p>{p}</p>)}</div>;
+        case 'fact':
+          return (
+            <div class="fact" data-reveal>
+              <span class="fact-value" data-count={variant === 'b' ? block.value : undefined}>{block.value}</span>
+              <span class="fact-label">{block.label}</span>
+            </div>
+          );
+        case 'quote':
+          return (
+            <figure class="quote" data-reveal>
+              <blockquote>{block.text}</blockquote>
+              <figcaption>{block.by}</figcaption>
+            </figure>
+          );
+        case 'sign':
+          return (
+            <section class="sign-block">
+              <Sign photo={block.photo} />
+              <div class="text sign-text" data-reveal>{block.text.map((p) => <p>{p}</p>)}</div>
+            </section>
+          );
+        case 'photo':
+          return (
+            <figure class={`photo photo-${block.size ?? 'wide'}`} data-reveal>
+              <Pic photo={block.photo} sizes={block.size === 'full' ? '100vw' : '(max-width: 767px) 100vw, 80vw'} />
+              {block.caption && <figcaption>{block.caption}</figcaption>}
+            </figure>
+          );
+        case 'row': {
+          const id = `info-${infoId++}`;
+          return (
+            <section class={`row row-${block.photos.length}${block.narrow ? ' row-narrow' : ''}`}>
+              <div class="row-grid">
+                {block.photos.map((item) => {
+                  const itemId = `info-${infoId++}`;
+                  return (
+                    <figure class="row-item" data-reveal>
+                      <div class="frame">
+                        <Pic photo={item.photo} sizes={`(max-width: 767px) ${block.photos.length > 2 ? 50 : 100}vw, ${Math.round(80 / block.photos.length)}vw`} />
+                        {item.info && variant === 'b' && (
+                          <>
+                            <button class="info-toggle" aria-expanded="false" aria-controls={itemId} aria-label="Mehr erfahren"><span></span></button>
+                            <p class="info-overlay" id={itemId}>{item.info}</p>
+                          </>
+                        )}
+                      </div>
+                      {item.caption && <figcaption>{item.caption}</figcaption>}
+                      {item.info && variant === 'a' && (
+                        <details class="more"><summary>Mehr erfahren</summary><p>{item.info}</p></details>
+                      )}
+                    </figure>
+                  );
+                })}
+              </div>
+              {block.info && variant === 'a' && (
+                <details class="more more-row" data-reveal><summary>Mehr erfahren</summary><p>{block.info}</p></details>
+              )}
+              {block.info && variant === 'b' && (
+                <p class="row-note" data-reveal id={id}>{block.info}</p>
+              )}
+            </section>
+          );
+        }
+        case 'split':
+          return (
+            <section class={`split${block.reverse ? ' split-reverse' : ''}`}>
+              <figure class="split-media" data-reveal>
+                <Pic photo={block.photo} sizes={half} />
+                {block.caption && <figcaption>{block.caption}</figcaption>}
+              </figure>
+              <div class="text split-text" data-reveal>{block.text.map((p) => <p>{p}</p>)}</div>
+            </section>
+          );
+        case 'drift':
+          return (
+            <section class="drift" data-drift>
+              {block.photos.map((p, i) => (
+                <figure class={`drift-item drift-${i}`}>
+                  <Pic photo={p} sizes="(max-width: 767px) 70vw, 45vw" />
+                </figure>
+              ))}
+            </section>
+          );
+        case 'video':
+          return (
+            <section class="video-block">
+              <div class="video" data-reveal data-youtube={block.youtube} data-title={block.title}>
+                <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/img/video-${block.youtube}.jpg`} alt={block.title} loading="lazy" />
+              </div>
+              <div class="video-side">
+                <figure class="video-photo" data-reveal>
+                  <Pic photo={block.photo} sizes={half} />
+                </figure>
+                <div class="text" data-reveal><p>{block.text}</p></div>
+              </div>
+            </section>
+          );
+        case 'gallery':
+          return variant === 'a' ? (
+            <section class="gallery">
+              <figure class="photo photo-wide" data-reveal>
+                <Pic photo={block.photos[0]} sizes="(max-width: 767px) 100vw, 80vw" />
+                <figcaption>{block.label}</figcaption>
+              </figure>
+              <details class="gallery-more">
+                <summary>{block.photos.length - 1} weitere Bilder</summary>
+                <div class="gallery-grid">
+                  {block.photos.slice(1).map((p) => (
+                    <figure><Pic photo={p} sizes="(max-width: 767px) 50vw, 27vw" /></figure>
+                  ))}
+                </div>
+              </details>
+            </section>
+          ) : (
+            <section class="carousel" data-reveal>
+              <div class="carousel-head">
+                <h2>{block.label}</h2>
+                <span class="carousel-count" data-count-of={block.photos.length}>1 / {block.photos.length}</span>
+              </div>
+              <div class="carousel-track" tabindex="0" aria-label={block.label}>
+                {block.photos.map((p) => (
+                  <figure class="carousel-item"><Pic photo={p} sizes="(max-width: 767px) 85vw, 60vw" /></figure>
+                ))}
+              </div>
+            </section>
+          );
+      }
+    })}
+  </article>
+
+  <a class="next" href={base + next.path}>
+    <Pic photo={next.hero} sizes="100vw" zoom={false} />
+    <span class="next-text">
+      <span class="kicker">Nächste Story</span>
+      <span class="title">{next.title[0]}<span class="title-sep" aria-hidden="true"></span>{next.title[1]}</span>
+    </span>
+  </a>
+</main>
+
+<div class="lightbox" hidden><img alt="" /></div>
+<script>
+  import { init } from '../../scripts/draft';
+  init();
+</script>

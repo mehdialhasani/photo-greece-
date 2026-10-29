@@ -1,0 +1,182 @@
+import data from '../data/pages.json';
+
+// The two stories as structured content for the redesigned layouts (the drafts under
+// /entwurf-a and /entwurf-b). Texts come from the Readymag export, photos are the
+// cropped WebP files in public/img, looked up by their number.
+
+export type Photo = { n: number; w: number; h: number; widths: number[]; alt: string };
+
+const sizes = new Map<number, { w: number; h: number; widths: number[] }>();
+for (const page of data.pages)
+  for (const w of page.widgets as any[])
+    if (w.type === 'picture') sizes.set(w.img.n, { w: w.w, h: w.h, widths: w.img.widths });
+
+const photo = (n: number, alt: string): Photo => ({ n, alt, ...sizes.get(n)! });
+
+export type Block =
+  | { type: 'lead'; text: string }
+  | { type: 'text'; text: string[] }
+  | { type: 'fact'; value: string; label: string }
+  | { type: 'quote'; text: string; by: string }
+  // The sign photo whose lettering continues beyond the edge of the picture while scrolling
+  | { type: 'sign'; photo: Photo; text: string[] }
+  | { type: 'photo'; photo: Photo; caption?: string; size?: 'full' | 'wide' | 'narrow'; info?: string }
+  | { type: 'row'; photos: { photo: Photo; caption?: string; info?: string }[]; info?: string; narrow?: boolean }
+  | { type: 'split'; photo: Photo; caption?: string; text: string[]; reverse?: boolean; info?: boolean }
+  | { type: 'drift'; photos: Photo[] }
+  | { type: 'video'; youtube: string; title: string; photo: Photo; text: string }
+  | { type: 'gallery'; photos: Photo[]; label: string };
+
+export type Story = {
+  slug: string;
+  path: string;
+  title: [string, string];
+  kicker: string;
+  hero: Photo;
+  blocks: Block[];
+};
+
+export const stories: Story[] = [
+  {
+    slug: 'wildfires',
+    path: '',
+    title: ['Wildfires', 'Greece'],
+    kicker: 'Eine Fotostory aus Griechenland',
+    hero: photo(1, 'Verbrannte Landschaft mit kahlen Bäumen'),
+    blocks: [
+      {
+        type: 'lead',
+        text: 'Waldbrände sind kein neues Phänomen, doch ihre Häufigkeit und Zerstörungskraft nehmen spürbar zu. Längere Trockenperioden und steigende Temperaturen lassen Feuer zu einer ständigen Bedrohung werden. Was früher Teil natürlicher Regeneration war, hinterlässt heute verbrannte Erde und eine Landschaft, die sich mit jedem Brand extrem verändert.',
+      },
+      {
+        type: 'sign',
+        photo: photo(2, 'Verbranntes Ortsschild von Alexandroupoli'),
+        text: [
+          'In der Nähe von Alexandroupolis verbrannte eine Fläche so groß wie Hamburg.',
+          'Die größten Brände in der EU-Geschichte. Mehrere Wochen kämpfen Feuerwehrleute im ganzen Land, besonders betroffen ist die Region nordöstlich von Alexandroupolis nahe der türkischen Grenze.',
+        ],
+      },
+      { type: 'fact', value: '175.000', label: 'Hektar verbranntes Land meldete die EU-Kommission. Etwa zwei Dutzend Menschen sind den Bränden zum Opfer gefallen.' },
+      { type: 'photo', photo: photo(3, 'Weite verbrannte Hügellandschaft'), size: 'full' },
+      { type: 'photo', photo: photo(4, 'Verkohlte Bäume vor einem kleinen weißen Schrein'), size: 'wide' },
+      {
+        type: 'split',
+        photo: photo(5, 'Verbrannter Baumstamm'),
+        text: [
+          'Eine Analyse der EFFIS-Daten (European Forest Fire Information System) bestätigt, dass in Griechenland im Jahr 2023 ca. 174.770 Hektar Land verbrannt sind.',
+          'Die Untersuchungen beziffern die Schadenskosten auf über 1,8 Milliarden Euro.',
+        ],
+      },
+      {
+        type: 'row',
+        narrow: true,
+        photos: [
+          { photo: photo(6, 'Verkohlte Rinde, Nahaufnahme') },
+          { photo: photo(7, 'Verkohltes Holz, Nahaufnahme') },
+        ],
+      },
+      { type: 'fact', value: '1,8 Mrd. €', label: 'Schadenskosten durch die Brände des Jahres 2023' },
+      {
+        type: 'text',
+        text: ['Waldbrände richten massive ökologische Schäden an. Sie zerstören Wälder, vernichten Lebensräume und beschleunigen die Bodenerosion, was die Regeneration erschwert. Zudem setzen sie große Mengen CO₂ frei und beschleunigen so den Klimawandel.'],
+      },
+      {
+        type: 'row',
+        photos: [
+          { photo: photo(8, 'Verbrannter Hang mit Bäumen') },
+          { photo: photo(9, 'Verbrannter Schuh auf Asche') },
+        ],
+      },
+      {
+        type: 'text',
+        text: ['Auch die wirtschaftlichen und landwirtschaftlichen Folgen sind gravierend. Verbrannte Felder und Weideflächen bedrohen Existenzen, während Schäden an der Infrastruktur hohe Kosten verursachen.'],
+      },
+      { type: 'photo', photo: photo(10, 'Olivenhain am Rand der verbrannten Fläche'), size: 'wide' },
+      {
+        type: 'split',
+        photo: photo(11, 'Verbrannter Baumstumpf mit neuem Grün'),
+        text: ['Verbrannte Böden benötigen Zeit, um sich zu regenerieren. In den ersten Monaten nach einem Brand bleibt die Erde oft unfruchtbar, da Nährstoffe verloren gehen und die natürliche Bodenstruktur zerstört ist. Ohne Schutz durch Vegetation verstärkt sich zudem die Erosion.'],
+      },
+      {
+        type: 'split',
+        reverse: true,
+        photo: photo(12, 'Erste Pflanzen auf verbranntem Boden'),
+        text: ['Nach einiger Zeit beginnt die Natur sich zu erholen. Pionierpflanzen wie Gräser und Sträucher kehren als Erste zurück und stabilisieren den Boden. Mikroorganismen und Insekten tragen zur Wiederherstellung der Nährstoffkreisläufe bei, wodurch langsam neues Leben entsteht.'],
+      },
+      {
+        type: 'split',
+        photo: photo(13, 'Rote junge Triebe zwischen verkohlten Ästen'),
+        text: ['Die vollständige Regeneration kann Jahre bis Jahrzehnte dauern. Wälder wachsen nur langsam nach, und manche Ökosysteme verändern sich dauerhaft. Durch Aufforstung und Bodenschutzmaßnahmen lässt sich der Prozess jedoch beschleunigen und die Widerstandskraft der Landschaft stärken.'],
+      },
+    ],
+  },
+  {
+    slug: 'olives',
+    path: 'olivenpresse/',
+    title: ['Makris', 'Olives'],
+    kicker: 'Eine Olivenpresse in Makri',
+    hero: photo(14, 'Frisch geerntete grüne und dunkle Oliven'),
+    blocks: [
+      {
+        type: 'split',
+        photo: photo(15, 'Alexandros in seiner Olivenpresse'),
+        caption: 'Alexandros, Betreiber der Olivenpresse',
+        text: [
+          'Der Olivenanbau in dieser Region hat eine lange Tradition und ist eng mit der lokalen Identität und Lebensweise verknüpft.',
+          'Die alten Olivenbäume von Makri, geprägt durch das gemäßigte Klima und die besonderen Böden, zeugen von einer jahrhundertealten Verbindung zwischen Mensch und Landschaft.',
+        ],
+      },
+      { type: 'drift', photos: [photo(16, 'Anlieferung an der Presse'), photo(17, 'Hof der Olivenpresse')] },
+      {
+        type: 'row',
+        photos: [
+          { photo: photo(18, 'Oliven auf einem Pick-up') },
+          { photo: photo(19, 'Kisten voller Oliven') },
+          { photo: photo(20, 'Säcke mit Oliven vor der Halle') },
+        ],
+        info: 'Viele Kleinbauern oder Familien mit Olivenbäumen kommen aus der Umgebung und lassen hier ihre Oliven pressen. Entweder wird für den eigenen Konsum gepresst, oder um es zu verkaufen. Es kommen auch Großbauern mit größerem Produktionsvolumen.',
+      },
+      {
+        type: 'row',
+        photos: [
+          {
+            photo: photo(21, 'Drei Bauern warten vor der Presse'),
+            caption: 'Parris, Christos und Vassili',
+            info: 'Die drei Farmer haben ihre Höfe in der Umgebung und kommen seit vielen Jahren zur Fabrik von Alexandros, um ihre Oliven zu pressen.',
+          },
+          { photo: photo(22, 'Vassili im Gespräch'), caption: 'Vassili' },
+        ],
+      },
+      {
+        type: 'quote',
+        text: 'Ich habe von ca. 60 Bäumen fast 20\u00a0% verloren. Die meisten Schäden sind durch die Hitze im Boden entstanden. Die beschädigten Bäume benötigen noch drei bis fünf Jahre, bis sie wieder gute Oliven tragen. Die neu gepflanzten Bäume eher zehn bis fünfzehn.',
+        by: 'Vassili, Olivenbauer',
+      },
+      {
+        type: 'video',
+        youtube: 'pY-P75QAtQI',
+        title: 'Olivenöl läuft aus der Presse',
+        photo: photo(24, 'Separator der Olivenpresse'),
+        text: 'Als einer der letzten Schritte im Herstellungsprozess wird hier Olivenöl von Wasser und pflanzlichen Flüssigkeiten getrennt. Danach wird es gefiltert, um alle restlichen Schwebstoffe zu entfernen und das Öl dadurch klarer und haltbarer zu machen.',
+      },
+      {
+        type: 'gallery',
+        label: 'In der Abfüllung',
+        photos: [
+          photo(25, 'Abfüllanlage mit Kanistern'),
+          photo(26, 'Gestapelte Ölkanister'),
+          photo(27, 'Etiketten der Olivenpresse'),
+          photo(28, 'Halle mit Abfüllanlage'),
+        ],
+      },
+      {
+        type: 'split',
+        photo: photo(29, 'Offene Tür zum Lager mit Trester'),
+        text: [
+          'Die Reste, welche beim Pressen übrig bleiben, nennt man Trester. Dieser kann vielseitig weiterverwertet werden: als Basis für Biokraftstoff, Tierfutter oder für Kosmetikprodukte.',
+          'Aus dem Trester kann auch Tresteröl gewonnen werden. Es dient als Basis für günstige Frittierfette, wird jedoch auch für Industrieprodukte wie Schmierstoffe oder Bio-Kunststoffe verwendet.',
+        ],
+      },
+    ],
+  },
+];
