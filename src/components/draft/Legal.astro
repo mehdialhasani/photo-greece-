@@ -19,7 +19,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 <header class="bar solid">
   <a class="bar-home" href={base + t.homePath}>{t.home}</a>
   <nav class="bar-nav" aria-label={t.stories}>
-    {stories.map((s) => <a href={base + s.path}>{s.slug === 'wildfires' ? t.wildfires : t.olives}</a>)}
+    {stories.map((s) => <a href={base + s.path}>{t[s.slug as 'wildfires' | 'olives' | 'demo']}</a>)}
     <a href={base + t.aboutPath} aria-current={page === 'about' ? 'page' : undefined}>{t.about}</a>
     <a class="bar-lang" href={base + ui[otherLang][pathKey]} hreflang={otherLang} aria-label={t.otherLabel}>{t.other}</a>
   </nav>
