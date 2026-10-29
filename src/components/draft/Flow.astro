@@ -131,7 +131,7 @@ let infoId = 0;
             </section>
           );
         case 'map':
-          return <SatMap label={block.label} steps={block.steps} pin={block.pin} />;
+          return <SatMap label={block.label} steps={block.steps} width={block.width} height={block.height} />;
         case 'drift':
           return (
             <section class={`drift${block.narrow ? ' drift-narrow' : ''}`} data-drift>

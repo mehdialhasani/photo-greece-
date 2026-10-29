@@ -104,59 +104,36 @@ function setupSign() {
   });
 }
 
-// Satellite tiles from Esri World Imagery with place names on top. Leaflet and the tiles
-// only load once a map comes near the screen. A click flies on to the next view.
-type MapStep = { center: [number, number]; zoom: number; label: string };
+// Satellite map: the stills replace each other with a zoom. Going deeper the old still grows
+// and fades while the next one settles in behind it; back to the start the other way.
 function setupMaps() {
-  const observer = new IntersectionObserver(async (entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      observer.unobserve(entry.target);
-      const el = entry.target as HTMLElement;
-      const { steps, pin } = JSON.parse(el.dataset.map!) as { steps: MapStep[]; pin?: [number, number] };
-      const L = (await import('leaflet')).default;
-      const map = L.map(el.querySelector<HTMLElement>('.map-canvas')!, {
-        zoomControl: false,
-        dragging: false,
-        touchZoom: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        boxZoom: false,
-        keyboard: false,
-        attributionControl: true,
-        zoomSnap: 0.25,
-      }).setView(steps[0].center, steps[0].zoom);
-      map.attributionControl.setPrefix(false);
-      const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services';
-      L.tileLayer(`${esri}/World_Imagery/MapServer/tile/{z}/{y}/{x}`, {
-        maxZoom: 18,
-        attribution: 'Satellitenbild: Esri, Maxar, Earthstar Geographics',
-      }).addTo(map);
-      L.tileLayer(`${esri}/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 18 }).addTo(map);
-      if (pin) L.marker(pin, { icon: L.divIcon({ className: 'map-pin', iconSize: [22, 22] }), keyboard: false, interactive: false }).addTo(map);
-
-      const label = el.querySelector<HTMLElement>('.map-label')!;
-      const dots = [...el.querySelectorAll<HTMLElement>('.map-dots span')];
-      const next = el.querySelector<HTMLButtonElement>('.map-next')!;
-      let current = 0;
-      const go = () => {
-        current = (current + 1) % steps.length;
-        const step = steps[current];
-        if (current === 0 || reduceMotion) map.setView(step.center, step.zoom, { animate: !reduceMotion });
-        else map.flyTo(step.center, step.zoom, { duration: 2.4 });
-        label.textContent = step.label;
-        dots.forEach((d, i) => d.classList.toggle('on', i === current));
-        next.classList.toggle('back', current === steps.length - 1);
-        next.setAttribute('aria-label', current === steps.length - 1 ? 'Zurück zur Übersicht' : 'Näher heranzoomen');
-      };
-      next.addEventListener('click', (e) => {
-        e.stopPropagation();
-        go();
-      });
-      el.querySelector('.map-canvas')!.addEventListener('click', go);
-    }
-  }, { rootMargin: '300px' });
-  document.querySelectorAll<HTMLElement>('[data-map]').forEach((el) => observer.observe(el));
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((map) => {
+    const stills = [...map.querySelectorAll<HTMLImageElement>(':scope > img')];
+    const label = map.querySelector<HTMLElement>('.map-label')!;
+    const dots = [...map.querySelectorAll<HTMLElement>('.map-dots span')];
+    const next = map.querySelector<HTMLButtonElement>('.map-next')!;
+    let current = 0;
+    const go = () => {
+      const from = stills[current];
+      current = (current + 1) % stills.length;
+      const to = stills[current];
+      const deeper = current > 0;
+      to.style.transition = 'none';
+      to.style.transform = `scale(${deeper ? 1.12 : 1.6})`;
+      void to.offsetWidth;
+      to.style.transition = '';
+      to.style.transform = '';
+      from.style.transform = `scale(${deeper ? 2.4 : 0.85})`;
+      from.classList.remove('on');
+      to.classList.add('on');
+      label.textContent = to.alt;
+      dots.forEach((d, i) => d.classList.toggle('on', i === current));
+      const last = current === stills.length - 1;
+      next.classList.toggle('back', last);
+      next.setAttribute('aria-label', last ? 'Zurück zur Übersicht' : 'Näher heranzoomen');
+    };
+    map.addEventListener('click', go);
+  });
 }
 
 function setupCarousel() {

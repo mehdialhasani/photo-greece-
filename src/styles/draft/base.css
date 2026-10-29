@@ -176,8 +176,13 @@ figure img { width: 100%; }
 .sign { grid-column: 1; justify-self: end; width: min(100%, 400px); }
 .sign-photo { position: relative; display: block; width: 100%; padding: 0; container-type: inline-size; cursor: pointer; }
 .sign-photo img { width: 100%; }
-.sign-photo .sign-detail { position: absolute; inset: 0; height: 100%; object-fit: cover; clip-path: circle(0% at 50% 50%); transition: clip-path .9s var(--ease); }
-.sign.detail .sign-detail { clip-path: circle(75% at 50% 50%); }
+.sign-photo .sign-detail { position: absolute; inset: 0; height: 100%; object-fit: cover; clip-path: circle(0% at 22% 84%); transition: clip-path .9s var(--ease); }
+.sign.detail .sign-detail { clip-path: circle(150% at 22% 84%); }
+.sign-thumb { position: absolute; z-index: 1; left: 7%; bottom: 6%; width: 30%; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 0 3px #fff, 0 8px 20px rgba(0, 0, 0, .35); transition: transform .4s var(--ease), opacity .4s; }
+.sign-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.sign-thumb::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; box-shadow: 0 0 0 2px var(--gold); animation: ping 2.2s var(--ease) infinite; }
+.sign-photo:hover .sign-thumb { transform: scale(1.08); }
+.sign.detail .sign-thumb { opacity: 0; transform: scale(.6); }
 .sign-line { transition: opacity .5s; }
 .sign.detail .sign-line { opacity: 0; }
 .sign figcaption { display: flex; align-items: center; gap: 12px; }
@@ -191,19 +196,20 @@ figure img { width: 100%; }
 .sign-text { grid-column: 2; max-width: 420px; padding-bottom: 6px; }
 
 /* Satellite map that zooms in on click */
-.map { position: relative; aspect-ratio: 16 / 9; max-height: 82svh; overflow: hidden; background: #1d2a33; }
-.map-canvas { position: absolute; inset: 0; cursor: pointer; background: #1d2a33; }
-.map-ui { position: absolute; z-index: 500; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 16px; padding: 16px; pointer-events: none; background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .55)); color: #fff; }
+.map { position: relative; overflow: hidden; background: #1d2a33; cursor: pointer; }
+/* The old still fades on top of the new one, so no gap shows in between */
+.map > img { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s cubic-bezier(.5, 0, .7, .4), transform 1.4s cubic-bezier(.5, 0, .3, 1); }
+.map > img.on { z-index: 0; opacity: 1; transition: opacity 0s, transform 1.6s var(--ease); }
+.map-ui { z-index: 2; }
+.map-ui { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .55)); color: #fff; }
 .map-label { flex: 1; font-size: .8125rem; }
 .map-dots { display: flex; gap: 6px; }
 .map-dots span { width: 22px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .45); transition: background-color .3s, width .3s var(--ease); }
 .map-dots span.on { width: 36px; background: #fff; }
-.map-next { pointer-events: auto; width: 48px; height: 48px; border-radius: 50%; background: var(--gold); color: #141414; font: 500 1.25rem/1 var(--font-ui); box-shadow: 0 6px 18px rgba(0, 0, 0, .3); transition: transform .4s var(--ease); }
+.map-next { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--gold); color: #141414; font: 500 1.25rem/1 var(--font-ui); box-shadow: 0 6px 18px rgba(0, 0, 0, .3); transition: transform .4s var(--ease); }
+.map-next::before { content: ''; position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 2px var(--gold); animation: ping 2.4s var(--ease) 3; opacity: 0; }
+.map-next { position: relative; }
 .map-next.back { transform: rotate(180deg); }
-.map .leaflet-control-attribution { margin: 0 !important; background: rgba(0, 0, 0, .45) !important; color: rgba(255, 255, 255, .8); font: 400 10px/1.4 var(--font-ui); }
-.map .leaflet-top.leaflet-right, .map .leaflet-bottom.leaflet-right { top: 0; bottom: auto; }
-.map-pin { border-radius: 50%; background: #e2506e; box-shadow: 0 0 0 3px rgba(255, 255, 255, .9), 0 4px 10px rgba(0, 0, 0, .4); }
-.map-pin::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; box-shadow: 0 0 0 2px #e2506e; animation: ping 2s var(--ease) infinite; }
 
 /* Two photos drifting against each other */
 .drift { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; padding: 4vw 0; }
@@ -302,7 +308,9 @@ figure img { width: 100%; }
   .timeline-steps { padding: 6svh 0 12svh; }
   .timeline-step { min-height: 46svh; }
 
-  .story > .map { grid-column: full; max-width: none; aspect-ratio: 4 / 5; }
+  .story > .map { grid-column: full; max-width: none; }
+  .map-ui { padding: 12px var(--gutter); }
+  .map-next { width: 42px; height: 42px; }
   .fact-photo { min-height: 80svh; }
 
   .video-block { grid-template-columns: 1fr; }
@@ -319,7 +327,8 @@ figure img { width: 100%; }
   [data-reveal], .v-b [data-reveal] img { opacity: 1; transform: none; transition: none; }
   .hero-media, .drift-item, .photo-zoom img { transform: none; }
   .sign-detail, .sign-line { transition: none; }
-  .sign-hint::before, .map-pin::after { animation: none; }
+  .sign-hint::before, .map-next::before, .sign-thumb::after { animation: none; }
+  .map > img { transition: opacity .3s; transform: none !important; }
   .timeline-stage img, .timeline-step { transition: none; }
   .scroll-hint, .info-toggle::before { animation: none; }
 }

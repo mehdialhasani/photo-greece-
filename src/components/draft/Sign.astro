@@ -11,7 +11,7 @@ interface Props {
 // letters continue the lettering outside the picture and appear one by one while scrolling.
 // Positions are measured on the photo, in percent of its width (cqw): left edge of the first
 // cut-off letter, baseline and x-height of each line.
-// Clicking the sign opens a close-up in the same frame.
+// A round preview of the close-up sits on the photo; clicking opens it in the same frame.
 const lines = [
   { rest: 'νδρουπολη', left: 93.9, baseline: 60.6, lang: 'el' },
   { rest: 'ndroupoli', left: 89.5, baseline: 81.9, lang: 'de' },
@@ -24,6 +24,7 @@ const { photo, detail } = Astro.props;
   <button type="button" class="sign-photo" aria-pressed="false" aria-label="Detail ansehen">
     <Pic photo={photo} sizes="(max-width: 767px) 50vw, 420px" zoom={false} />
     <Pic photo={detail} sizes="(max-width: 767px) 50vw, 420px" zoom={false} class="sign-detail" />
+    <span class="sign-thumb" aria-hidden="true"><Pic photo={detail} sizes="140px" zoom={false} /></span>
     {lines.map((line) => (
       <span class="sign-line" lang={line.lang} style={`--left:${line.left};--baseline:${line.baseline}`} aria-hidden="true">
         <span class="sign-word">

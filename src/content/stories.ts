@@ -28,8 +28,8 @@ export type Block =
   | { type: 'sign'; photo: Photo; detail: Photo; text: string[] }
   // zoom: the photo slowly enlarges while it scrolls through the screen
   | { type: 'photo'; photo: Photo; caption?: string; size?: 'full' | 'wide' | 'narrow'; info?: string; zoom?: boolean }
-  // Satellite map that flies from one view to the next on click. center is [lat, lng]
-  | { type: 'map'; label: string; steps: { center: [number, number]; zoom: number; label: string }[]; pin?: [number, number] }
+  // Satellite map that zooms from one still to the next on click (public/img/map-IMG.webp)
+  | { type: 'map'; label: string; width: number; height: number; steps: { img: string; label: string }[] }
   | { type: 'row'; photos: { photo: Photo; caption?: string; info?: string }[]; info?: string; narrow?: boolean }
   | { type: 'split'; photo: Photo; caption?: string; text: string[]; reverse?: boolean; info?: boolean }
   | { type: 'drift'; photos: Photo[]; narrow?: boolean }
@@ -74,12 +74,14 @@ export const stories: Story[] = [
       {
         type: 'map',
         label: 'Karte: Weg nach Alexandroupoli',
+        width: 1528,
+        height: 763,
         steps: [
-          { center: [41.6, 23.4], zoom: 6, label: 'Balkan' },
-          { center: [40.6, 24.7], zoom: 8, label: 'Nordägäis' },
-          { center: [40.87, 25.8], zoom: 11, label: 'Alexandroupoli' },
+          { img: 'w1', label: 'Balkan' },
+          { img: 'w2', label: 'Nordägäis' },
+          { img: 'w3', label: 'Küste bei Alexandroupoli' },
+          { img: 'w4', label: 'Alexandroupoli' },
         ],
-        pin: [40.846, 25.876],
       },
       {
         type: 'fact',
@@ -166,9 +168,12 @@ export const stories: Story[] = [
       {
         type: 'map',
         label: 'Karte: Olivenhaine bei Makri',
+        width: 2000,
+        height: 1184,
         steps: [
-          { center: [40.855, 25.74], zoom: 13, label: 'Makri' },
-          { center: [40.866, 25.728], zoom: 16, label: 'Olivenhaine' },
+          { img: 'o1', label: 'Küste bei Makri' },
+          { img: 'o2', label: 'Makri' },
+          { img: 'o3', label: 'Olivenhaine' },
         ],
       },
       { type: 'drift', photos: [photo(16, 'Anlieferung an der Presse'), photo(17, 'Hof der Olivenpresse')] },
