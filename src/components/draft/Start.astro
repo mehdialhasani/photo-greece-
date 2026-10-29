@@ -1,0 +1,40 @@
+---
+import { getStories, type Lang } from '../../content/stories';
+import { ui } from '../../content/ui';
+import Pic from './Pic.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+// Start page: one large photo per story to pick from
+const { lang } = Astro.props;
+const t = ui[lang];
+const stories = getStories(lang);
+const otherLang = lang === 'de' ? 'en' : 'de';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+<header class="bar solid">
+  <a class="bar-home" href={base + t.homePath} aria-current="page">{t.home}</a>
+  <nav class="bar-nav" aria-label={t.stories}>
+    <a class="bar-lang" href={base + ui[otherLang].homePath} hreflang={otherLang} aria-label={t.otherLabel}>{t.other}</a>
+  </nav>
+</header>
+<main class="start">
+  <h1 class="start-head"><span class="kicker">{t.choose}</span>Mehdi Alhasani</h1>
+  <div class="start-grid">
+    {stories.map((s, i) => (
+      <a class="start-tile" href={base + s.path}>
+        <Pic photo={s.hero} sizes="(max-width: 767px) 100vw, 50vw" eager={i === 0} zoom={false} />
+        <span class="start-text">
+          <span class="kicker">{s.kicker}</span>
+          <span class="title">{s.title[0]}<span class="title-sep" aria-hidden="true"></span><span class="sr-only"> | </span>{s.title[1]}</span>
+        </span>
+      </a>
+    ))}
+  </div>
+</main>
+<footer class="foot">
+  <span>© Mehdi Alhasani</span>
+  <a href={base + t.legalPath}>{t.legal}</a>
+</footer>
