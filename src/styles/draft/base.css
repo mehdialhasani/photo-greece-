@@ -264,6 +264,7 @@ figure img { width: 100%; }
 .next .title { font-size: clamp(2.8rem, 9vw, 6.5rem); }
 
 /* Start page */
+.start-nav { margin-left: auto; }
 .start { padding: calc(60px + env(safe-area-inset-top)) 0 0; }
 .start-head { display: grid; gap: 10px; padding: clamp(28px, 5vw, 56px) var(--gutter) clamp(20px, 3vw, 32px); font: 400 clamp(2.2rem, 6vw, 3.6rem)/.95 var(--font-title); letter-spacing: .02em; }
 .start-head .kicker { color: var(--muted); }
