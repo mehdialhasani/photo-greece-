@@ -2,7 +2,7 @@ import data from '../data/pages.json';
 import extra from '../data/extra.json';
 import { en } from './en';
 
-// The two stories as structured content for the site layout.
+// The stories as structured content for the site layout.
 // Texts come from the Readymag export, photos are the
 // cropped WebP files in public/img, looked up by their number.
 
@@ -233,14 +233,52 @@ const de: Story[] = [
       },
     ],
   },
+  {
+    slug: 'demo',
+    path: 'hannover-demo/',
+    title: ['Gegen die Presse', 'Hannover'],
+    kicker: 'NPD-Demo in Hannover',
+    hero: photo(53, 'Kameraleute und Reporter in der Menge'),
+    teaser: photo(66, 'Polizeikette bei Nacht vor dem Neuen Rathaus'),
+    blocks: [
+      { type: 'text', text: ['Hannover, 23. November 2019'] },
+      {
+        type: 'row',
+        photos: [
+          { photo: photo(50, 'Leere Straße mit Laub und Polizeiwagen vor einem Wohnblock') },
+          { photo: photo(51, 'Wasserwerfer und Polizeiwagen in einer Straße') },
+          { photo: photo(52, 'Polizeikette vor einem Gebäude') },
+        ],
+      },
+      { type: 'photo', photo: photo(54, 'Ein Mann spricht in ein Mikrofon, umringt von Kameras'), size: 'wide' },
+      { type: 'photo', photo: photo(55, 'Gedränge zwischen Demonstranten und Fotografen'), size: 'full' },
+      { type: 'photo', photo: photo(56, 'Demonstrationszug mit Trommeln und Transparenten'), size: 'full', zoom: true },
+      { type: 'drift', photos: [photo(58, 'Ein Demonstrant ruft in Richtung der Fotografen'), photo(57, 'Junger Mann mit Trommel im Demonstrationszug')] },
+      { type: 'photo', photo: photo(60, 'Ein Polizist hält einen Mann am Boden fest'), size: 'wide' },
+      {
+        type: 'row',
+        photos: [
+          { photo: photo(59, 'Polizist mit Hund und Maulkorb') },
+          { photo: photo(62, 'Polizisten um eine Frau, die auf der Straße kniet') },
+        ],
+      },
+      { type: 'photo', photo: photo(61, 'Polizist mit Helm zwischen Fahnen'), size: 'full' },
+      { type: 'photo', photo: photo(64, 'Reiterstaffel der Polizei auf einer Kreuzung'), size: 'narrow' },
+      { type: 'photo', photo: photo(63, 'Grauer Himmel über dem Maschsee'), size: 'narrow', zoom: true },
+      { type: 'photo', photo: photo(65, 'Lange Polizeikette bei Nacht'), size: 'full' },
+      { type: 'drift', photos: [photo(67, 'Berittene Polizei bei Nacht neben einem Wasserwerfer'), photo(66, 'Polizeikette bei Nacht vor dem Neuen Rathaus')] },
+      { type: 'photo', photo: photo(68, 'Polizisten auf den Rolltreppen einer U-Bahn-Station'), size: 'full' },
+      { type: 'photo', photo: photo(69, 'Polizisten fahren die Rolltreppe hinunter'), size: 'narrow' },
+    ],
+  },
 ];
 
 export type Lang = 'de' | 'en';
 
 // Where each story lives per language, relative to the site root
 const paths: Record<Lang, Record<string, string>> = {
-  de: { wildfires: 'waldbrand/', olives: 'olivenpresse/' },
-  en: { wildfires: 'en/wildfires/', olives: 'en/olive-press/' },
+  de: { wildfires: 'waldbrand/', olives: 'olivenpresse/', demo: 'hannover-demo/' },
+  en: { wildfires: 'en/wildfires/', olives: 'en/olive-press/', demo: 'en/hanover-demo/' },
 };
 
 // Text fields that are shown to readers. Story titles without a translation (Makris | Olives) stay the same.
