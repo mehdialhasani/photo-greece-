@@ -1,5 +1,6 @@
 import data from '../data/pages.json';
 import extra from '../data/extra.json';
+import { en } from './en';
 
 // The two stories as structured content for the site layout.
 // Texts come from the Readymag export, photos are the
@@ -56,7 +57,7 @@ export type Story = {
   blocks: Block[];
 };
 
-export const stories: Story[] = [
+const de: Story[] = [
   {
     slug: 'wildfires',
     path: '',
@@ -233,3 +234,32 @@ export const stories: Story[] = [
     ],
   },
 ];
+
+export type Lang = 'de' | 'en';
+
+// Where each story lives per language, relative to the site root
+const paths: Record<Lang, Record<string, string>> = {
+  de: { wildfires: '', olives: 'olivenpresse/' },
+  en: { wildfires: 'en/', olives: 'en/olive-press/' },
+};
+
+// Text fields that are shown to readers. Story titles are English in both languages.
+const textKeys = new Set(['text', 'label', 'kicker', 'alt', 'caption', 'info', 'value', 'by', 'title']);
+
+function translate(value: unknown, key: string): unknown {
+  if (typeof value === 'string') {
+    if (!textKeys.has(key)) return value;
+    if (value in en) return en[value];
+    if (key === 'title') return value;
+    throw new Error(`Missing English text for: ${value}`);
+  }
+  if (Array.isArray(value)) return value.map((item) => translate(item, key));
+  if (value && typeof value === 'object')
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, translate(v, k)]));
+  return value;
+}
+
+export function getStories(lang: Lang): Story[] {
+  const list = lang === 'de' ? de : (translate(de, '') as Story[]);
+  return list.map((story) => ({ ...story, path: paths[lang][story.slug] }));
+}

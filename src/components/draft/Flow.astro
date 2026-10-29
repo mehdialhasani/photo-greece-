@@ -1,5 +1,6 @@
 ---
-import { stories } from '../../content/stories';
+import { getStories, type Lang } from '../../content/stories';
+import { ui } from '../../content/ui';
 import Pic from './Pic.astro';
 import Sign from './Sign.astro';
 import SatMap from './Map.astro';
@@ -8,21 +9,27 @@ interface Props {
   slug: string;
   // a: light editorial layout with a top bar, b: dark cinematic layout with a floating menu
   variant: 'a' | 'b';
+  lang: Lang;
 }
 
-const { slug, variant } = Astro.props;
+const { slug, variant, lang } = Astro.props;
+const t = ui[lang];
+const stories = getStories(lang);
 const story = stories.find((s) => s.slug === slug)!;
 const next = stories.find((s) => s.slug !== slug)!;
+// The same story in the other language
+const other = getStories(lang === 'de' ? 'en' : 'de').find((s) => s.slug === slug)!;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const half = '(max-width: 767px) 100vw, 50vw';
 let infoId = 0;
 ---
 <header class="bar">
-  <a class="bar-home" href={base}>Fotostorys</a>
-  <nav class="bar-nav" aria-label="Storys">
+  <a class="bar-home" href={base + stories[0].path}>{t.home}</a>
+  <nav class="bar-nav" aria-label={t.stories}>
     {stories.map((s) => (
-      <a href={base + s.path} aria-current={s.slug === slug ? 'page' : undefined}>{s.slug === 'wildfires' ? 'Wildfires' : 'Olivenöl'}</a>
+      <a href={base + s.path} aria-current={s.slug === slug ? 'page' : undefined}>{s.slug === 'wildfires' ? t.wildfires : t.olives}</a>
     ))}
+    <a class="bar-lang" href={base + other.path} hreflang={lang === 'de' ? 'en' : 'de'} aria-label={t.otherLabel}>{t.other}</a>
   </nav>
   <span class="bar-progress" aria-hidden="true"></span>
 </header>
@@ -71,7 +78,7 @@ let infoId = 0;
         case 'sign':
           return (
             <section class="sign-block">
-              <Sign photo={block.photo} detail={block.detail} />
+              <Sign photo={block.photo} detail={block.detail} lang={lang} />
               <div class="text sign-text" data-reveal>{block.text.map((p) => <p>{p}</p>)}</div>
             </section>
           );
@@ -81,7 +88,7 @@ let infoId = 0;
               <Pic photo={block.photo} sizes={block.size === 'full' ? '100vw' : '(max-width: 767px) 100vw, 80vw'} />
               {block.caption && <figcaption>{block.caption}</figcaption>}
               {block.info && (
-                <details class="more"><summary>Mehr erfahren</summary><p>{block.info}</p></details>
+                <details class="more"><summary>{t.more}</summary><p>{block.info}</p></details>
               )}
             </figure>
           );
@@ -98,21 +105,21 @@ let infoId = 0;
                         <Pic photo={item.photo} sizes={`(max-width: 767px) ${block.photos.length > 2 ? 50 : 100}vw, ${Math.round(80 / block.photos.length)}vw`} />
                         {item.info && variant === 'b' && (
                           <>
-                            <button class="info-toggle" aria-expanded="false" aria-controls={itemId} aria-label="Mehr erfahren"><span></span></button>
+                            <button class="info-toggle" aria-expanded="false" aria-controls={itemId} aria-label={t.more}><span></span></button>
                             <p class="info-overlay" id={itemId}>{item.info}</p>
                           </>
                         )}
                       </div>
                       {item.caption && <figcaption>{item.caption}</figcaption>}
                       {item.info && variant === 'a' && (
-                        <details class="more"><summary>Mehr erfahren</summary><p>{item.info}</p></details>
+                        <details class="more"><summary>{t.more}</summary><p>{item.info}</p></details>
                       )}
                     </figure>
                   );
                 })}
               </div>
               {block.info && variant === 'a' && (
-                <details class="more more-row" data-reveal><summary>Mehr erfahren</summary><p>{block.info}</p></details>
+                <details class="more more-row" data-reveal><summary>{t.more}</summary><p>{block.info}</p></details>
               )}
               {block.info && variant === 'b' && (
                 <p class="row-note" data-reveal id={id}>{block.info}</p>
@@ -131,7 +138,7 @@ let infoId = 0;
             </section>
           );
         case 'map':
-          return <SatMap label={block.label} from={block.from} to={block.to} pin={block.pin} still={block.still} />;
+          return <SatMap lang={lang} label={block.label} from={block.from} to={block.to} pin={block.pin} still={block.still} />;
         case 'drift':
           return (
             <section class={`drift${block.narrow ? ' drift-narrow' : ''}`} data-drift>
@@ -170,6 +177,7 @@ let infoId = 0;
             <section class="video-block">
               <div class="video" data-reveal data-youtube={block.youtube} data-title={block.title}>
                 <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/img/video-${block.youtube}.jpg`} alt={block.title} loading="lazy" />
+                <button type="button" class="video-play"><span class="video-play-icon" aria-hidden="true"></span>{t.play}<small>{t.playNote}</small></button>
               </div>
               <div class="video-side">
                 <figure class="video-photo" data-reveal>
@@ -187,7 +195,7 @@ let infoId = 0;
                 <figcaption>{block.label}</figcaption>
               </figure>
               <details class="gallery-more">
-                <summary>{block.photos.length - 1} weitere Bilder</summary>
+                <summary>{t.morePhotos(block.photos.length - 1)}</summary>
                 <div class="gallery-grid">
                   {block.photos.slice(1).map((p) => (
                     <figure><Pic photo={p} sizes="(max-width: 767px) 50vw, 27vw" /></figure>
@@ -215,11 +223,16 @@ let infoId = 0;
   <a class="next" href={base + next.path}>
     <Pic photo={next.teaser ?? next.hero} sizes="100vw" zoom={false} />
     <span class="next-text">
-      <span class="kicker">Nächste Story</span>
+      <span class="kicker">{t.next}</span>
       <span class="title">{next.title[0]}<span class="title-sep" aria-hidden="true"></span>{next.title[1]}</span>
     </span>
   </a>
 </main>
+
+<footer class="foot">
+  <span>© Mehdi Alhasani</span>
+  <a href={base + t.legalPath}>{t.legal}</a>
+</footer>
 
 <div class="lightbox" hidden><img alt="" /></div>
 <script>

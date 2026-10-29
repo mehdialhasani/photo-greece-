@@ -7,20 +7,23 @@ import '@fontsource/source-serif-4/400.css';
 import '@fontsource/source-serif-4/400-italic.css';
 import '../styles/draft/base.css';
 import { BUILD } from '../build';
+import type { Lang } from '../content/stories';
+import { ui } from '../content/ui';
 
 interface Props {
   title: string;
   variant: 'a' | 'b';
   image?: string;
+  lang?: Lang;
 }
 
-const { title, variant, image } = Astro.props;
-const description = 'Fotostorys von Mehdi Alhasani über die Waldbrände in Griechenland und eine Olivenpresse in Makri.';
+const { title, variant, image, lang = 'de' } = Astro.props;
+const description = ui[lang].description;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
 const versionUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'version.json';
 ---
 <!doctype html>
-<html lang="de" class={`v-${variant}`}>
+<html lang={lang} class={`v-${variant}`}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
