@@ -4,10 +4,13 @@ import { ui } from '../../content/ui';
 
 interface Props {
   lang: Lang;
+  // Which page this frame holds, for the language switch and the current link
+  page?: 'legal' | 'about';
 }
 
 // Frame for the legal notice: the menu bar of the stories, the text, the footer
-const { lang } = Astro.props;
+const { lang, page = 'legal' } = Astro.props;
+const pathKey = page === 'legal' ? 'legalPath' : 'aboutPath';
 const t = ui[lang];
 const stories = getStories(lang);
 const otherLang = lang === 'de' ? 'en' : 'de';
@@ -17,13 +20,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <a class="bar-home" href={base + t.homePath}>{t.home}</a>
   <nav class="bar-nav" aria-label={t.stories}>
     {stories.map((s) => <a href={base + s.path}>{s.slug === 'wildfires' ? t.wildfires : t.olives}</a>)}
-    <a class="bar-lang" href={base + ui[otherLang].legalPath} hreflang={otherLang} aria-label={t.otherLabel}>{t.other}</a>
+    <a href={base + t.aboutPath} aria-current={page === 'about' ? 'page' : undefined}>{t.about}</a>
+    <a class="bar-lang" href={base + ui[otherLang][pathKey]} hreflang={otherLang} aria-label={t.otherLabel}>{t.other}</a>
   </nav>
 </header>
 <main class="legal">
   <slot />
 </main>
 <footer class="foot">
-  <span>© Mehdi Alhasani</span>
-  <a href={base + t.legalPath} aria-current="page">{t.legal}</a>
+  <span>© Mehdi Al-Hasani</span>
+  <a href={base + t.legalPath} aria-current={page === 'legal' ? 'page' : undefined}>{t.legal}</a>
 </footer>

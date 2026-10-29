@@ -41,7 +41,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .bar { position: fixed; z-index: 100; font: 500 .875rem/1 var(--font-ui); transition: transform .45s var(--ease), background-color .3s, color .3s; }
 .bar a { text-decoration: none; }
 .bar-nav { display: flex; gap: 4px; }
-.bar-nav a { padding: 10px 14px; border-radius: 999px; transition: background-color .25s, color .25s; }
+.bar-nav a { padding: 10px 14px; white-space: nowrap; border-radius: 999px; transition: background-color .25s, color .25s; }
 .bar-lang { margin-left: 8px; padding: 10px 12px !important; font-size: .75rem; letter-spacing: .1em; opacity: .8; box-shadow: inset 1px 0 0 currentColor; border-radius: 0 !important; }
 .bar-lang:hover { opacity: 1; }
 .bar-progress { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--accent); transform: scaleX(var(--read, 0)); transform-origin: 0 50%; }
@@ -310,7 +310,9 @@ figure img { width: 100%; }
   .story { row-gap: 72px; padding: 72px 0 96px; }
   .v-a .bar { height: 54px; }
   .v-a .bar-home { font-size: 1.25rem; }
-  .bar-nav a { padding: 10px 11px; }
+  .bar-nav { gap: 0; }
+  .bar-nav a { padding: 10px 7px; }
+  .bar-lang { margin-left: 4px; padding: 10px 8px !important; }
   .v-a .hero-text { bottom: 64px; }
   .v-b .hero-text { inset: 0 var(--gutter) 12svh; }
 
