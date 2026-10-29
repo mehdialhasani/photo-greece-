@@ -28,7 +28,6 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <a class="start-tile" href={base + s.path}>
         <Pic photo={s.hero} sizes="(max-width: 767px) 100vw, 50vw" eager={i === 0} zoom={false} />
         <span class="start-text">
-          <span class="kicker">{s.kicker}</span>
           <span class="title">{s.title[0]}<span class="title-sep" aria-hidden="true"></span><span class="sr-only"> | </span>{s.title[1]}</span>
         </span>
       </a>
