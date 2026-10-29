@@ -12,7 +12,7 @@ interface Props {
 const { slug, variant } = Astro.props;
 const story = stories.find((s) => s.slug === slug)!;
 const next = stories.find((s) => s.slug !== slug)!;
-const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/entwurf-${variant}/`;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const half = '(max-width: 767px) 100vw, 50vw';
 let infoId = 0;
 ---
