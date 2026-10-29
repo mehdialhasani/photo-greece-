@@ -6,6 +6,7 @@ import '@fontsource/bebas-neue/400.css';
 import '@fontsource/source-serif-4/400.css';
 import '@fontsource/source-serif-4/400-italic.css';
 import '../styles/draft/base.css';
+import { BUILD } from '../build';
 
 interface Props {
   title: string;
@@ -16,6 +17,7 @@ interface Props {
 const { title, variant, image } = Astro.props;
 const description = 'Fotostorys von Mehdi Alhasani über die Waldbrände in Griechenland und eine Olivenpresse in Makri.';
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
+const versionUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'version.json';
 ---
 <!doctype html>
 <html lang="de" class={`v-${variant}`}>
@@ -28,6 +30,22 @@ const ogImage = image ? new URL(image, Astro.site).href : undefined;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {ogImage && <meta property="og:image" content={ogImage} />}
+    <!-- GitHub Pages lets browsers keep a page for 10 minutes. If a newer deploy exists,
+         refresh the cached page once and reload, so changes show up right away. -->
+    <script is:inline define:vars={{ build: BUILD, versionUrl }}>
+      fetch(versionUrl, { cache: 'no-store' })
+        .then((r) => r.json())
+        .then(({ v }) => {
+          if (v === build) return;
+          const key = 'reloaded-' + v;
+          try {
+            if (sessionStorage.getItem(key)) return;
+            sessionStorage.setItem(key, '1');
+          } catch (e) {}
+          fetch(location.href, { cache: 'reload' }).finally(() => location.reload());
+        })
+        .catch(() => {});
+    </script>
   </head>
   <body>
     <slot />
