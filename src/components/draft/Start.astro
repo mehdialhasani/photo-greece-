@@ -15,8 +15,7 @@ const otherLang = lang === 'de' ? 'en' : 'de';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 <header class="bar solid">
-  <a class="bar-home" href={base + t.homePath} aria-current="page">{t.home}</a>
-  <nav class="bar-nav" aria-label={t.stories}>
+  <nav class="bar-nav start-nav" aria-label={t.stories}>
     <a href={base + t.aboutPath}>{t.about}</a>
     <a class="bar-lang" href={base + ui[otherLang].homePath} hreflang={otherLang} aria-label={t.otherLabel}>{t.other}</a>
   </nav>
