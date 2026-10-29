@@ -99,6 +99,7 @@ function setupSign() {
       button.setAttribute('aria-pressed', String(open));
       button.setAttribute('aria-label', open ? 'Zurück zum Schild' : 'Detail ansehen');
       sign.classList.toggle('detail', open);
+      sign.querySelector('.sign-hint')!.textContent = open ? 'Zurück zum Schild' : 'Detail ansehen';
     });
   });
 }
@@ -214,33 +215,40 @@ function setupVideos() {
   document.querySelectorAll<HTMLElement>('[data-youtube]').forEach((el) => observer.observe(el));
 }
 
-// Scroll-linked values, written as CSS custom properties so the styles decide what moves
-function update() {
-  const vh = window.innerHeight;
-  const root = document.documentElement;
-  const max = root.scrollHeight - vh;
-  root.style.setProperty('--read', String(max > 0 ? clamp(window.scrollY / max) : 0));
+// Scroll-linked values, written as CSS custom properties so the styles decide what moves.
+// Set on the elements themselves, not on <html>, so a frame only restyles what moves.
+// Elements are looked up once and the work only runs when the scroll position or window changes.
+type Scroller = { el: HTMLElement; prop: string; value: (rect: DOMRect, vh: number) => number };
+const scrollers: Scroller[] = [];
+let bar: HTMLElement | null = null;
+let hero: HTMLElement | null = null;
 
-  const hero = document.querySelector<HTMLElement>('[data-hero]');
-  if (hero) root.style.setProperty('--hero', String(clamp(window.scrollY / hero.offsetHeight)));
-
+function collect() {
+  bar = document.querySelector<HTMLElement>('.bar');
+  hero = document.querySelector<HTMLElement>('[data-hero]');
   // The letters complete the sign between the photo entering the lower part of the screen
   // and its centre reaching the upper third
-  document.querySelectorAll<HTMLElement>('[data-sign]').forEach((sign) => {
-    const rect = sign.getBoundingClientRect();
-    const center = rect.top + rect.height / 2;
-    sign.style.setProperty('--p', reduceMotion ? '1' : String(clamp((vh * 0.95 - center) / (vh * 0.55))));
-  });
+  document.querySelectorAll<HTMLElement>('[data-sign]').forEach((el) =>
+    scrollers.push({ el, prop: '--p', value: (rect, vh) => (reduceMotion ? 1 : clamp((vh * 0.95 - rect.top - rect.height / 2) / (vh * 0.55))) }));
+  document.querySelectorAll<HTMLElement>('[data-drift]').forEach((el) =>
+    scrollers.push({ el, prop: '--d', value: (rect, vh) => clamp((vh - rect.top) / (vh + rect.height)) * 2 - 1 }));
+  document.querySelectorAll<HTMLElement>('[data-scrollzoom]').forEach((el) =>
+    scrollers.push({ el, prop: '--z', value: (rect, vh) => clamp((vh - rect.top) / (vh + rect.height)) }));
+}
 
-  document.querySelectorAll<HTMLElement>('[data-drift]').forEach((drift) => {
-    const rect = drift.getBoundingClientRect();
-    drift.style.setProperty('--d', String(clamp((vh - rect.top) / (vh + rect.height)) * 2 - 1));
-  });
+function update() {
+  const vh = window.innerHeight;
+  const y = window.scrollY;
+  const max = document.documentElement.scrollHeight - vh;
+  bar?.style.setProperty('--read', (max > 0 ? clamp(y / max) : 0).toFixed(4));
+  if (hero && y < hero.offsetHeight * 1.2) hero.style.setProperty('--hero', clamp(y / hero.offsetHeight).toFixed(4));
 
-  document.querySelectorAll<HTMLElement>('[data-scrollzoom]').forEach((el) => {
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty('--z', String(clamp((vh - rect.top) / (vh + rect.height))));
-  });
+  for (const s of scrollers) {
+    const rect = s.el.getBoundingClientRect();
+    // Off screen nothing moves
+    if (rect.bottom < -vh * 0.2 || rect.top > vh * 1.2) continue;
+    s.el.style.setProperty(s.prop, s.value(rect, vh).toFixed(4));
+  }
 
   timelines.forEach((check) => check());
 }
@@ -248,9 +256,7 @@ function update() {
 let lastY = 0;
 function updateBar() {
   const y = window.scrollY;
-  const bar = document.querySelector<HTMLElement>('.bar');
   if (!bar) return;
-  const hero = document.querySelector<HTMLElement>('[data-hero]');
   bar.classList.toggle('solid', y > (hero?.offsetHeight ?? 0) - 80);
   // Hide the bar while reading downwards, bring it back on the way up
   if (Math.abs(y - lastY) > 6) {
@@ -259,7 +265,18 @@ function updateBar() {
   }
 }
 
+// A link from the other story opens this one at the top, also where the browser
+// would otherwise keep the old scroll position. Back and reload keep their position.
+function startAtTop() {
+  const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+  if (location.hash || (nav && nav.type !== 'navigate')) return false;
+  window.scrollTo(0, 0);
+  return true;
+}
+
 export function init() {
+  const top = startAtTop();
+  collect();
   setupReveal();
   setupLightbox();
   setupInfo();
@@ -270,18 +287,25 @@ export function init() {
   setupCount();
   setupVideos();
 
-  const frame = () => {
+  let seenY = -1;
+  let seenH = -1;
+  const frame = (force = false) => {
+    if (!force && window.scrollY === seenY && window.innerHeight === seenH) return;
+    seenY = window.scrollY;
+    seenH = window.innerHeight;
     update();
     updateBar();
   };
   if (reduceMotion) {
-    window.addEventListener('scroll', frame, { passive: true });
-    window.addEventListener('resize', frame);
-    frame();
+    window.addEventListener('scroll', () => frame(), { passive: true });
+    window.addEventListener('resize', () => frame(true));
+    frame(true);
     return;
   }
   const lenis = new Lenis({ lerp: 0.12 });
+  if (top) lenis.scrollTo(0, { immediate: true, force: true });
   scrollTo = (el, offset) => lenis.scrollTo(el, { offset: -offset });
+  window.addEventListener('resize', () => frame(true));
   const raf = (time: number) => {
     lenis.raf(time);
     frame();

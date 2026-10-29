@@ -184,8 +184,6 @@ figure img { width: 100%; }
 .sign-hint { flex: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; font-weight: 500; color: var(--ink); }
 .sign-hint::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s var(--ease) infinite; }
 @keyframes pulse { 50% { opacity: .25; } }
-.sign-caption { opacity: 0; transition: opacity .5s; }
-.sign.detail .sign-caption { opacity: 1; }
 .sign.detail .sign-hint::before { animation: none; }
 .sign-line { position: absolute; z-index: 1; left: 100%; top: calc((var(--baseline) - 15.8) * 1cqw); font: 500 18.3cqw/1 'Inter', sans-serif; color: var(--sign); white-space: nowrap; overflow: hidden; pointer-events: none; }
 .sign-word { display: block; margin-left: calc((var(--left) - 100) * 1cqw); }
@@ -320,7 +318,7 @@ figure img { width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal], .v-b [data-reveal] img { opacity: 1; transform: none; transition: none; }
   .hero-media, .drift-item, .photo-zoom img { transform: none; }
-  .sign-detail, .sign-line, .sign-caption { transition: none; }
+  .sign-detail, .sign-line { transition: none; }
   .sign-hint::before, .map-pin::after { animation: none; }
   .timeline-stage img, .timeline-step { transition: none; }
   .scroll-hint, .info-toggle::before { animation: none; }

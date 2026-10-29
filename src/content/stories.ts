@@ -25,7 +25,7 @@ export type Block =
   | { type: 'quote'; text: string; by: string }
   // The sign photo whose lettering continues beyond the edge of the picture while scrolling
   // detail: a close-up shown in place of the sign photo when it is clicked
-  | { type: 'sign'; photo: Photo; detail: { photo: Photo; caption: string }; text: string[] }
+  | { type: 'sign'; photo: Photo; detail: Photo; text: string[] }
   // zoom: the photo slowly enlarges while it scrolls through the screen
   | { type: 'photo'; photo: Photo; caption?: string; size?: 'full' | 'wide' | 'narrow'; info?: string; zoom?: boolean }
   // Satellite map that flies from one view to the next on click. center is [lat, lng]
@@ -65,7 +65,7 @@ export const stories: Story[] = [
       {
         type: 'sign',
         photo: photo(2, 'Verbranntes Ortsschild von Alexandroupoli'),
-        detail: { photo: photo(34, 'Geschmolzener Pfeil auf blauem Blech, Nahaufnahme'), caption: 'Geschmolzener Pfeil, Nahaufnahme' },
+        detail: photo(34, 'Geschmolzener Pfeil auf blauem Blech, Nahaufnahme'),
         text: [
           'In der Nähe von Alexandroupolis verbrannte eine Fläche so groß wie Hamburg.',
           'Die größten Brände in der EU-Geschichte. Mehrere Wochen kämpfen Feuerwehrleute im ganzen Land, besonders betroffen ist die Region nordöstlich von Alexandroupolis nahe der türkischen Grenze.',
@@ -109,8 +109,8 @@ export const stories: Story[] = [
       {
         type: 'row',
         photos: [
-          { photo: photo(32, 'Häuser eines Dorfes hinter verbrannten Bäumen'), caption: 'Ein Dorf hinter der verbrannten Fläche' },
-          { photo: photo(33, 'Eingestürzte Hütte mit verbogenem Blechdach'), caption: 'Eine zerstörte Hütte' },
+          { photo: photo(32, 'Häuser eines Dorfes hinter verbrannten Bäumen') },
+          { photo: photo(33, 'Eingestürzte Hütte mit verbogenem Blechdach') },
         ],
       },
       {
