@@ -1,7 +1,7 @@
 import data from '../data/pages.json';
 
-// The two stories as structured content for the redesigned layouts (the drafts under
-// /entwurf-a and /entwurf-b). Texts come from the Readymag export, photos are the
+// The two stories as structured content for the site layout.
+// Texts come from the Readymag export, photos are the
 // cropped WebP files in public/img, looked up by their number.
 
 export type Photo = { n: number; w: number; h: number; widths: number[]; alt: string };
