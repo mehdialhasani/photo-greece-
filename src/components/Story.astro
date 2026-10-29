@@ -7,12 +7,78 @@ interface Props {
 }
 
 const page = data.pages[Astro.props.page];
+
+// Mobile: the same widgets in reading order. The full-width photo at the top becomes a
+// full-screen cover with the texts placed on it; photos side by side stay in a row.
+const ordered = [...page.widgets].sort((a, b) => a.y - b.y || a.x - b.x);
+const hero = ordered.find((w) => w.type === 'picture' && w.y <= 0 && w.w >= 1000);
+const onHero = hero ? ordered.filter((w) => w.type === 'text' && w.y < hero.y + hero.h - 100) : [];
+// Texts placed on top of a photo (e.g. white text on an image, captions revealed by a click)
+// stay on that photo, positioned relative to it.
+const overlays = new Map<string, typeof ordered>();
+for (const t of ordered) {
+  if (t.type !== 'text' || onHero.includes(t)) continue;
+  const [cx, cy] = [t.x + t.w / 2, t.y + t.h / 2];
+  const pic = ordered.find(
+    (p) => p.type === 'picture' && p !== hero && (p.z ?? 0) < (t.z ?? 0) && cx > p.x && cx < p.x + p.w && cy > p.y && cy < p.y + p.h,
+  );
+  if (pic) overlays.set(pic.id, [...(overlays.get(pic.id) ?? []), t]);
+}
+const overlaid = new Set([...overlays.values()].flat());
+const overlayStyle = (t: (typeof ordered)[number], p: (typeof ordered)[number]) =>
+  `left:${((t.x - p.x) / p.w) * 100}%;top:${((t.y - p.y) / p.h) * 100}%;width:${(Math.min(t.w, p.x + p.w - t.x) / p.w) * 100}%`;
+type Row = { kind: 'media'; items: typeof ordered } | { kind: 'text'; item: (typeof ordered)[number] };
+const rows: Row[] = [];
+for (const w of ordered) {
+  if (w === hero || onHero.includes(w) || overlaid.has(w)) continue;
+  const last = rows.at(-1);
+  if (w.type === 'text') rows.push({ kind: 'text', item: w });
+  else if (last?.kind === 'media' && Math.abs(last.items[0].y - w.y) <= 30) last.items.push(w);
+  else rows.push({ kind: 'media', items: [w] });
+}
+const align = (w: { x: number; w: number }) => {
+  const center = w.x + w.w / 2;
+  return center < 420 ? 'left' : center > 604 ? 'right' : 'center';
+};
 ---
 <div class="viewer" style={`--page-h:${page.height};background:${page.bg}`}>
   <div class="stage" style={`width:${data.width}px;height:${page.height}px`}>
     {page.widgets.map((w) => <Widget w={w} />)}
   </div>
 </div>
+
+<main class="mobile" style={`background:${page.bg}`}>
+  {hero && (
+    <header class="m-hero">
+      <Widget w={hero} mobile />
+      <div class="m-hero-text">{onHero.map((w) => <Widget w={w} mobile />)}</div>
+    </header>
+  )}
+  {rows.map((row) =>
+    row.kind === 'text' ? (
+      <div class={`m-block m-text-block m-align-${align(row.item)}`} data-reveal>
+        <Widget w={row.item} mobile />
+      </div>
+    ) : (
+      <div
+        class={`m-block m-media m-cols-${row.items.length}${row.items.length === 1 && row.items[0].h > row.items[0].w ? ' m-portrait' : ''}`}
+        data-reveal
+      >
+        {row.items.map((w) => (
+          <div class="m-media-item" style={`aspect-ratio:${w.w} / ${w.h}`}>
+            <Widget w={w} mobile />
+            {overlays.get(w.id)?.map((t) => (
+              <div class="m-overlay" style={overlayStyle(t, w)}>
+                <Widget w={t} mobile />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    ),
+  )}
+</main>
+
 <div class="fixed-layer" style={`width:${data.width}px`}>
   {data.global.map((w) => <Widget w={w} />)}
 </div>

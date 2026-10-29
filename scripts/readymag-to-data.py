@@ -138,6 +138,8 @@ def widget(w, text_styles, media_numbers):
     out['anims'] = anims(w)
     if w['type'] == 'text':
         out['html'] = text_html(w, text_styles)
+        sizes = [int(m) for m in re.findall(r'font-size:(\d+)px', out['html'])]
+        out['fontSize'] = max(sizes, default=18)
     elif w['type'] == 'picture':
         out['img'] = {
             'n': media_numbers[w['wid']],

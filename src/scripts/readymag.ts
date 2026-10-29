@@ -20,7 +20,7 @@ type Anim = {
 type Animated = {
   el: HTMLElement;
   top: number; // layout y in design pixels
-  fixed: boolean;
+  layout: 'desktop' | 'mobile' | 'fixed';
   anims: Anim[];
   values: number[]; // current progress 0..1 per animation (before easing)
   hoverable: boolean;
@@ -40,6 +40,7 @@ const ease = (name: string, t: number) => (easings[name] ?? ((x: number) => x))(
 const clamp = (t: number) => Math.min(1, Math.max(0, t));
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobileQuery = window.matchMedia('(max-width: 767px)');
 
 let scale = 1;
 const items: Animated[] = [];
@@ -48,6 +49,8 @@ const tweens = new Map<string, { item: Animated; index: number; from: number; to
 function updateScale() {
   scale = Math.min(window.innerWidth, MAX_WIDTH) / DESIGN_WIDTH;
   document.documentElement.style.setProperty('--s', String(scale));
+  // Keep the menu large enough to tap on small screens
+  document.documentElement.style.setProperty('--s-menu', String(Math.max(scale, 0.55)));
 }
 
 function tween(item: Animated, index: number, to: number, delay = 0) {
@@ -84,16 +87,20 @@ function render(now: number) {
   const viewer = document.querySelector<HTMLElement>('.viewer');
   const viewerTop = (viewer?.getBoundingClientRect().top ?? 0) + window.scrollY;
 
+  const mobile = mobileQuery.matches;
   for (const item of items) {
+    if (item.layout === (mobile ? 'desktop' : 'mobile')) continue;
     let opacity = 1;
     let x = 0;
     let y = 0;
     let rotate = 0;
     item.anims.forEach((anim, i) => {
-      if (anim.type === 'scroll' && !item.fixed) item.values[i] = scrollProgress(item, anim, viewerTop);
+      // The mobile layout flows freely: only clicks reveal things, hover content is always shown
+      if (item.layout === 'mobile' && (anim.type === 'scroll' || anim.type === 'hover')) return;
+      if (anim.type === 'scroll' && item.layout === 'desktop') item.values[i] = scrollProgress(item, anim, viewerTop);
       const t = ease(anim.ease, item.values[i]);
       if (anim.opacity) opacity *= anim.opacity[0] + (anim.opacity[1] - anim.opacity[0]) * t;
-      if (anim.move) {
+      if (anim.move && item.layout !== 'mobile') {
         x += anim.move[0] * t;
         y += anim.move[1] * t;
       }
@@ -121,6 +128,17 @@ function setupLightbox() {
   window.addEventListener('keydown', (e) => e.key === 'Escape' && close());
 }
 
+function setupReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }
+  }, { rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+}
+
 function setupVideos() {
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
@@ -142,8 +160,8 @@ export function init() {
     const anims: Anim[] = JSON.parse(el.dataset.anims!);
     items.push({
       el,
-      top: parseFloat(el.style.top),
-      fixed: !!el.closest('.fixed-layer'),
+      top: parseFloat(el.style.top) || 0,
+      layout: el.closest('.fixed-layer') ? 'fixed' : el.closest('.mobile') ? 'mobile' : 'desktop',
       anims,
       values: anims.map(() => 0),
       hoverable: anims.some((a) => a.type === 'hover'),
@@ -151,7 +169,7 @@ export function init() {
   });
 
   for (const item of items) {
-    const id = item.el.id.slice(2);
+    const [prefix, id] = [item.el.id.slice(0, 1), item.el.id.slice(2)];
     item.anims.forEach((anim, i) => {
       if (anim.type === 'load') tween(item, i, 1, anim.delay);
       if (anim.type === 'hover') {
@@ -162,7 +180,8 @@ export function init() {
         const triggers = anim.trigger.length ? anim.trigger : [id];
         let open = false;
         for (const triggerId of triggers) {
-          const trigger = document.getElementById(`w-${triggerId}`);
+          const trigger =
+            document.getElementById(`${prefix}-${triggerId}`) ?? document.getElementById(`w-${triggerId}`);
           if (!trigger) continue;
           trigger.dataset.clickable = '';
           trigger.addEventListener('click', () => {
@@ -175,6 +194,7 @@ export function init() {
   }
 
   setupLightbox();
+  setupReveal();
   setupVideos();
 
   if (!reduceMotion) {

@@ -126,6 +126,7 @@
     }
    ],
    "html": "<p style=\"line-height:25px;text-align:left\"><a href=\"{BASE}/\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(255,255,255,1)\">wildfires </span></a></p><p style=\"line-height:25px;text-align:left\"><a href=\"{BASE}/olivenpresse/\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(255,255,255,1)\">olive oil </span></a></p><p style=\"line-height:25px;text-align:left\">&nbsp;</p>",
+   "fontSize": 18,
    "fixed": true
   }
  ],
@@ -207,7 +208,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:101px;text-align:left\"><span style=\"font-family:'Bebas Neue';font-size:80px;font-weight:400;font-style:normal;color:rgba(240,192,81,1);letter-spacing:3px\">Wildfires|Greece</span></p>"
+     "html": "<p style=\"line-height:101px;text-align:left\"><span style=\"font-family:'Bebas Neue';font-size:80px;font-weight:400;font-style:normal;color:rgba(240,192,81,1);letter-spacing:3px\">Wildfires|Greece</span></p>",
+     "fontSize": 80
     },
     {
      "x": 193,
@@ -264,7 +266,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:90px;text-align:right\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:67px\">Αλεξανδρουπολη</span></p>"
+     "html": "<p style=\"line-height:90px;text-align:right\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:67px\">Αλεξανδρουπολη</span></p>",
+     "fontSize": 67
     },
     {
      "x": 188,
@@ -292,7 +295,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:90px;text-align:right\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:67px\">Alexandroupoli</span></p>"
+     "html": "<p style=\"line-height:90px;text-align:right\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:67px\">Alexandroupoli</span></p>",
+     "fontSize": 67
     },
     {
      "x": 48,
@@ -369,7 +373,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:25px;text-align:left;padding-bottom:10px\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;font-size:18px;color:rgba(255,255,255,1)\">Die EU-Kommission meldete über 175.000 Hektar verbranntes Land. </span></p><p style=\"line-height:25px;text-align:left;padding-bottom:10px\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;font-size:18px;color:rgba(255,255,255,1)\">Etwa zwei Dutzend Menschen sind den Bränden zum Opfer gefallen.</span></p>"
+     "html": "<p style=\"line-height:25px;text-align:left;padding-bottom:10px\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;font-size:18px;color:rgba(255,255,255,1)\">Die EU-Kommission meldete über 175.000 Hektar verbranntes Land. </span></p><p style=\"line-height:25px;text-align:left;padding-bottom:10px\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;font-size:18px;color:rgba(255,255,255,1)\">Etwa zwei Dutzend Menschen sind den Bränden zum Opfer gefallen.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 564,
@@ -397,7 +402,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:18px\">In der Nähe von Alexandroupolis verbrannte eine Fläche so groß wie Hamburg.</span></p><p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:18px\">Die größten Brände in der EU-Geschichte. Mehrere Wochen kämpfen Feuerwehrleute im ganzen Land, besonders betroffen ist die Region nordöstlich von Alexandroupolis nahe der türkischen Grenze.<br></span></p>"
+     "html": "<p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:18px\">In der Nähe von Alexandroupolis verbrannte eine Fläche so groß wie Hamburg.</span></p><p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:18px\">Die größten Brände in der EU-Geschichte. Mehrere Wochen kämpfen Feuerwehrleute im ganzen Land, besonders betroffen ist die Region nordöstlich von Alexandroupolis nahe der türkischen Grenze.<br></span></p>",
+     "fontSize": 18
     },
     {
      "x": 164,
@@ -529,7 +535,8 @@
      "id": "678a938a38480df7c71fc487",
      "type": "text",
      "anims": [],
-     "html": "<p style=\"line-height:26px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Eine Analyse der EFFIS-Daten (European Forest Fire Information System) bestätigt, dass in Griechenland im Jahr 2023 ca. 174.770 Hektar Land verbrannt sind. </span></p><p style=\"line-height:26px;text-align:left\">&nbsp;</p><p style=\"line-height:26px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die Untersuchungen beziffern die Schadenskosten auf über 1,8 Milliarden Euro.</span></p>"
+     "html": "<p style=\"line-height:26px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Eine Analyse der EFFIS-Daten (European Forest Fire Information System) bestätigt, dass in Griechenland im Jahr 2023 ca. 174.770 Hektar Land verbrannt sind. </span></p><p style=\"line-height:26px;text-align:left\">&nbsp;</p><p style=\"line-height:26px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die Untersuchungen beziffern die Schadenskosten auf über 1,8 Milliarden Euro.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 48,
@@ -800,7 +807,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:37px;text-align:center\"><span style=\"font-family:'Inter';font-size:28px;font-weight:400;font-style:normal;color:rgba(125,131,125,1);letter-spacing:3px\">Waldbrände sind kein neues Phänomen, doch ihre Häufigkeit und Zerstörungskraft nehmen spürbar zu. Längere Trockenperioden und steigende Temperaturen lassen Feuer zu einer ständigen Bedrohung werden. Was früher Teil natürlicher Regeneration war, hinterlässt heute verbrannte Erde und eine Landschaft, die sich mit jedem Brand </span></p><p style=\"line-height:37px;text-align:center\"><span style=\"font-family:'Inter';font-size:28px;font-weight:400;font-style:normal;color:rgba(125,131,125,1);letter-spacing:3px\">extrem verändert.</span></p>"
+     "html": "<p style=\"line-height:37px;text-align:center\"><span style=\"font-family:'Inter';font-size:28px;font-weight:400;font-style:normal;color:rgba(125,131,125,1);letter-spacing:3px\">Waldbrände sind kein neues Phänomen, doch ihre Häufigkeit und Zerstörungskraft nehmen spürbar zu. Längere Trockenperioden und steigende Temperaturen lassen Feuer zu einer ständigen Bedrohung werden. Was früher Teil natürlicher Regeneration war, hinterlässt heute verbrannte Erde und eine Landschaft, die sich mit jedem Brand </span></p><p style=\"line-height:37px;text-align:center\"><span style=\"font-family:'Inter';font-size:28px;font-weight:400;font-style:normal;color:rgba(125,131,125,1);letter-spacing:3px\">extrem verändert.</span></p>",
+     "fontSize": 28
     },
     {
      "x": 236,
@@ -811,7 +819,8 @@
      "id": "679a004beff6ae594eed5a99",
      "type": "text",
      "anims": [],
-     "html": "<p style=\"line-height:33px;text-align:center\"><span style=\"color:rgba(125,131,125,1);font-weight:400;font-style:normal;font-family:'Inter';font-size:22px\">Waldbrände richten massive ökologische Schäden an. Sie zerstören Wälder, vernichten Lebensräume und beschleunigen die Bodenerosion, was die Regeneration erschwert. Zudem setzen sie große Mengen CO₂ frei und beschleunigen so den Klimawandel.</span></p>"
+     "html": "<p style=\"line-height:33px;text-align:center\"><span style=\"color:rgba(125,131,125,1);font-weight:400;font-style:normal;font-family:'Inter';font-size:22px\">Waldbrände richten massive ökologische Schäden an. Sie zerstören Wälder, vernichten Lebensräume und beschleunigen die Bodenerosion, was die Regeneration erschwert. Zudem setzen sie große Mengen CO₂ frei und beschleunigen so den Klimawandel.</span></p>",
+     "fontSize": 22
     },
     {
      "x": 286,
@@ -822,7 +831,8 @@
      "id": "679a018088f5fd1a97930310",
      "type": "text",
      "anims": [],
-     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Auch die wirtschaftlichen und landwirtschaftlichen Folgen sind gravierend. Verbrannte Felder und Weideflächen bedrohen Existenzen, während Schäden an der Infrastruktur hohe Kosten verursachen. .</span></p>"
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Auch die wirtschaftlichen und landwirtschaftlichen Folgen sind gravierend. Verbrannte Felder und Weideflächen bedrohen Existenzen, während Schäden an der Infrastruktur hohe Kosten verursachen. .</span></p>",
+     "fontSize": 18
     },
     {
      "x": 524,
@@ -833,7 +843,8 @@
      "id": "679a038ad4b135e6e15fe33e",
      "type": "text",
      "anims": [],
-     "html": "<p style=\"line-height:40px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Verbrannte Böden benötigen Zeit, um sich zu regenerieren. In den ersten Monaten nach einem Brand bleibt die Erde oft unfruchtbar, da Nährstoffe verloren gehen und die natürliche Bodenstruktur zerstört ist. Ohne Schutz durch Vegetation verstärkt sich zudem die Erosion.</span></p>"
+     "html": "<p style=\"line-height:40px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Verbrannte Böden benötigen Zeit, um sich zu regenerieren. In den ersten Monaten nach einem Brand bleibt die Erde oft unfruchtbar, da Nährstoffe verloren gehen und die natürliche Bodenstruktur zerstört ist. Ohne Schutz durch Vegetation verstärkt sich zudem die Erosion.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 176,
@@ -844,7 +855,8 @@
      "id": "679a03cb64d5e24d932dab72",
      "type": "text",
      "anims": [],
-     "html": "<p style=\"line-height:40px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Nach einiger Zeit beginnt die Natur sich zu erholen. Pionierpflanzen wie Gräser und Sträucher kehren als Erste zurück und stabilisieren den Boden. Mikroorganismen und Insekten tragen zur Wiederherstellung der Nährstoffkreisläufe bei, wodurch langsam neues Leben entsteht.</span></p><p style=\"line-height:30px;text-align:left\">&nbsp;</p>"
+     "html": "<p style=\"line-height:40px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Nach einiger Zeit beginnt die Natur sich zu erholen. Pionierpflanzen wie Gräser und Sträucher kehren als Erste zurück und stabilisieren den Boden. Mikroorganismen und Insekten tragen zur Wiederherstellung der Nährstoffkreisläufe bei, wodurch langsam neues Leben entsteht.</span></p><p style=\"line-height:30px;text-align:left\">&nbsp;</p>",
+     "fontSize": 18
     },
     {
      "x": 650,
@@ -855,7 +867,8 @@
      "id": "679a040676402805edd5f847",
      "type": "text",
      "anims": [],
-     "html": "<p style=\"line-height:35px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die vollständige Regeneration kann Jahre bis Jahrzehnte dauern. Wälder wachsen nur langsam nach, und manche Ökosysteme verändern sich dauerhaft. Durch Aufforstung und Bodenschutzmaßnahmen lässt sich der Prozess jedoch beschleunigen und die Widerstandskraft der Landschaft stärken.</span></p><p style=\"line-height:30px;text-align:left\">&nbsp;</p>"
+     "html": "<p style=\"line-height:35px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die vollständige Regeneration kann Jahre bis Jahrzehnte dauern. Wälder wachsen nur langsam nach, und manche Ökosysteme verändern sich dauerhaft. Durch Aufforstung und Bodenschutzmaßnahmen lässt sich der Prozess jedoch beschleunigen und die Widerstandskraft der Landschaft stärken.</span></p><p style=\"line-height:30px;text-align:left\">&nbsp;</p>",
+     "fontSize": 18
     }
    ]
   },
@@ -997,7 +1010,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:101px;text-align:right\"><span style=\"font-family:'Bebas Neue';font-size:80px;font-weight:400;font-style:normal;color:rgba(240,192,81,1);letter-spacing:3px\">MaKris|Olives</span></p>"
+     "html": "<p style=\"line-height:101px;text-align:right\"><span style=\"font-family:'Bebas Neue';font-size:80px;font-weight:400;font-style:normal;color:rgba(240,192,81,1);letter-spacing:3px\">MaKris|Olives</span></p>",
+     "fontSize": 80
     },
     {
      "x": 532,
@@ -1028,7 +1042,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-size:18px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Der Olivenanbau in dieser Region hat eine lange Tradition und ist eng mit der lokalen Identität und Lebensweise verknüpft. </span></p><p style=\"line-height:25px;text-align:left\">&nbsp;</p><p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-size:18px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die alten Olivenbäume von Makri, geprägt durch das gemäßigte Klima und die besonderen Böden, zeugen von einer jahrhundertealten Verbindung zwischen Mensch und Landschaft.</span></p>"
+     "html": "<p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-size:18px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Der Olivenanbau in dieser Region hat eine lange Tradition und ist eng mit der lokalen Identität und Lebensweise verknüpft. </span></p><p style=\"line-height:25px;text-align:left\">&nbsp;</p><p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-size:18px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die alten Olivenbäume von Makri, geprägt durch das gemäßigte Klima und die besonderen Böden, zeugen von einer jahrhundertealten Verbindung zwischen Mensch und Landschaft.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 262,
@@ -1058,7 +1073,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:18px;text-align:left\"><span style=\"font-family:'Inter';font-size:12px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Alexandros </span></p>"
+     "html": "<p style=\"line-height:18px;text-align:left\"><span style=\"font-family:'Inter';font-size:12px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Alexandros </span></p>",
+     "fontSize": 12
     },
     {
      "x": 158,
@@ -1186,7 +1202,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:38px;text-align:center\"><span style=\"color:rgba(255,255,255,1);font-weight:400;font-style:normal;font-family:'Bebas Neue';font-size:25px\">Parris| Christos | Vassili</span></p>"
+     "html": "<p style=\"line-height:38px;text-align:center\"><span style=\"color:rgba(255,255,255,1);font-weight:400;font-style:normal;font-family:'Bebas Neue';font-size:25px\">Parris| Christos | Vassili</span></p>",
+     "fontSize": 25
     },
     {
      "x": 159,
@@ -1232,7 +1249,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die drei Farmer haben ihre Höfe in der Umgebung und kommen seit vielen Jahren zur Fabrik von Alexandros, um ihre Oliven zu pressen.</span></p>"
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die drei Farmer haben ihre Höfe in der Umgebung und kommen seit vielen Jahren zur Fabrik von Alexandros, um ihre Oliven zu pressen.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 586,
@@ -1278,7 +1296,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:26px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Vassili:</span></p><p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\"> &quot;Ich habe von ca. 60 Bäumen fast 20% verloren. Die meisten Schäden sind durch die Hitze im Boden entstanden. Die beschädigten Bäume benötigen noch drei bis fünf Jahre, bis sie wieder gute Oliven tragen. Die neu gepflanzten Bäume eher zehn bis fünfzehn.   </span></p>"
+     "html": "<p style=\"line-height:26px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Vassili:</span></p><p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\"> &quot;Ich habe von ca. 60 Bäumen fast 20% verloren. Die meisten Schäden sind durch die Hitze im Boden entstanden. Die beschädigten Bäume benötigen noch drei bis fünf Jahre, bis sie wieder gute Oliven tragen. Die neu gepflanzten Bäume eher zehn bis fünfzehn.   </span></p>",
+     "fontSize": 18
     },
     {
      "x": 353,
@@ -1325,7 +1344,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:12px;text-align:center\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,0.57);font-size:12px\">klicke gerne auf die Bilder für mehr Informationen</span></p>"
+     "html": "<p style=\"line-height:12px;text-align:center\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,0.57);font-size:12px\">klicke gerne auf die Bilder für mehr Informationen</span></p>",
+     "fontSize": 12
     },
     {
      "x": 524,
@@ -1400,7 +1420,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Als einer der letzten Schritte im Herstellungsprozess wird hier Olivenöl von Wasser und pflanzlichen Flüssigkeiten getrennt.</span></p><p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Danach wird es gefiltert, um alle restlichen Schwebstoffe zu entfernen und das Öl dadurch klarer und haltbarer zu machen.</span></p>"
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Als einer der letzten Schritte im Herstellungsprozess wird hier Olivenöl von Wasser und pflanzlichen Flüssigkeiten getrennt.</span></p><p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Danach wird es gefiltert, um alle restlichen Schwebstoffe zu entfernen und das Öl dadurch klarer und haltbarer zu machen.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 858,
@@ -1627,7 +1648,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Viele Kleinbauern oder Familien mit Olivenbäumen kommen aus der Umgebung und lassen hier ihre Oliven pressen. Entweder wird für den eigenen Konsum gepresst, oder um es zu verkaufen. Es kommen auch Großbauern mit größerem Produktionsvolumen.</span></p>"
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Viele Kleinbauern oder Familien mit Olivenbäumen kommen aus der Umgebung und lassen hier ihre Oliven pressen. Entweder wird für den eigenen Konsum gepresst, oder um es zu verkaufen. Es kommen auch Großbauern mit größerem Produktionsvolumen.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 356,
@@ -1675,7 +1697,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:12px;text-align:center\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,0.57);font-size:12px\">klicke gerne auf die Bilder für mehr Informationen</span></p>"
+     "html": "<p style=\"line-height:12px;text-align:center\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,0.57);font-size:12px\">klicke gerne auf die Bilder für mehr Informationen</span></p>",
+     "fontSize": 12
     },
     {
      "x": 102,
@@ -1750,7 +1773,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die Reste, welche beim Pressen übrigbleiben, nennt man Trester. Dieser kann vielseitig weiterverwertet werden - als Basis für Biokraftstoff, Tierfutter, oder für Kosmetikprodukte.</span></p>"
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die Reste, welche beim Pressen übrigbleiben, nennt man Trester. Dieser kann vielseitig weiterverwertet werden - als Basis für Biokraftstoff, Tierfutter, oder für Kosmetikprodukte.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 436,
@@ -1796,7 +1820,8 @@
        "rotate": null
       }
      ],
-     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Aus dem Trester kann auch Tresteröl gewonnen werden, dieses dient als Basis für günstige Frittierfette. Es wird jedoch auch für Industrieprodukte wie Schmierstoffe oder Bio-Kunststoffe verwendet.</span></p>"
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Aus dem Trester kann auch Tresteröl gewonnen werden, dieses dient als Basis für günstige Frittierfette. Es wird jedoch auch für Industrieprodukte wie Schmierstoffe oder Bio-Kunststoffe verwendet.</span></p>",
+     "fontSize": 18
     },
     {
      "x": 286,

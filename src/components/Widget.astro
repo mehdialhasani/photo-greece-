@@ -1,29 +1,33 @@
 ---
 interface Props {
   w: any;
+  // Mobile renders the same widget in document flow instead of at its Readymag position
+  mobile?: boolean;
 }
 
-const { w } = Astro.props;
+const { w, mobile = false } = Astro.props;
+const prefix = mobile ? 'm' : 'w';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const style = [
+const style = mobile ? undefined : [
   `left:${w.x}px`,
   `top:${w.y}px`,
   `width:${w.w}px`,
   w.type !== 'text' && `height:${w.h}px`,
   `z-index:${w.z ?? 1}`,
 ].filter(Boolean).join(';');
+const mobileSize = w.fontSize >= 75 ? 'xl' : w.fontSize >= 50 ? 'l' : w.fontSize >= 24 ? 'm' : w.fontSize >= 16 ? 's' : 'xs';
 const anims = w.anims.length ? JSON.stringify(w.anims) : undefined;
 const src = (width: number) => `${base}/img/${String(w.img?.n).padStart(2, '0')}-${width}.webp`;
 ---
 {w.type === 'text' && (
-  <div class="w w-text" id={`w-${w.id}`} style={style} data-anims={anims} set:html={w.html.replaceAll('{BASE}', base)} />
+  <div class={`w w-text${mobile ? ` m-size-${mobileSize}` : ''}`} id={`${prefix}-${w.id}`} style={style} data-anims={anims} set:html={w.html.replaceAll('{BASE}', base)} />
 )}
 {w.type === 'picture' && (
-  <div class="w w-picture" id={`w-${w.id}`} style={style} data-anims={anims} data-lightbox={w.lightbox ? src(w.img.widths.at(-1)) : undefined}>
+  <div class="w w-picture" id={`${prefix}-${w.id}`} style={style} data-anims={anims} data-lightbox={w.lightbox ? src(w.img.widths.at(-1)) : undefined}>
     <img
       src={src(w.img.widths[0])}
       srcset={w.img.widths.map((width: number) => `${src(width)} ${width}w`).join(', ')}
-      sizes={`calc(${(w.w / 1024 * 100).toFixed(2)}vw)`}
+      sizes={mobile ? '100vw' : `calc(${(w.w / 1024 * 100).toFixed(2)}vw)`}
       width={w.w}
       height={w.h}
       loading={w.y < 900 ? 'eager' : 'lazy'}
@@ -35,13 +39,13 @@ const src = (width: number) => `${base}/img/${String(w.img?.n).padStart(2, '0')}
 {w.type === 'shape' && (
   <div
     class="w w-shape"
-    id={`w-${w.id}`}
+    id={`${prefix}-${w.id}`}
     style={`${style};background:${w.shape.bg};border-radius:${w.shape.radius}px${w.shape.shadow ? ';box-shadow:1px 1px 2px #000' : ''}`}
     data-anims={anims}
   />
 )}
 {w.type === 'video' && (
-  <div class="w w-video" id={`w-${w.id}`} style={style} data-anims={anims} data-youtube={w.youtube}>
+  <div class="w w-video" id={`${prefix}-${w.id}`} style={style} data-anims={anims} data-youtube={w.youtube}>
     <img src={`${base}/img/video-${w.youtube}.jpg`} alt={w.title} loading="lazy" />
   </div>
 )}
