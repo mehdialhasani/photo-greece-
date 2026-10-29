@@ -102,4 +102,7 @@ export const en: Record<string, string> = {
     'What is left over after pressing is called pomace. It has many uses: as a base for biofuel, animal feed or cosmetics.',
   'Aus dem Trester kann auch Tresteröl gewonnen werden. Es dient als Basis für günstige Frittierfette, wird jedoch auch für Industrieprodukte wie Schmierstoffe oder Bio-Kunststoffe verwendet.':
     'Pomace oil can also be extracted from it. It is used for cheap frying fats, but also for industrial products such as lubricants or bioplastics.',
+  // Story title
+  'Waldbrände': 'Wildfires',
+  'Griechenland': 'Greece',
 };

@@ -5,7 +5,7 @@ export const ui = {
   de: {
     home: 'Fotostorys',
     stories: 'Storys',
-    wildfires: 'Wildfires',
+    wildfires: 'Waldbrände',
     olives: 'Olivenöl',
     more: 'Mehr erfahren',
     morePhotos: (n: number) => `${n} weitere Bilder`,
