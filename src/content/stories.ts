@@ -61,7 +61,7 @@ const de: Story[] = [
   {
     slug: 'wildfires',
     path: 'waldbrand/',
-    title: ['Wildfires', 'Greece'],
+    title: ['Waldbrände', 'Griechenland'],
     kicker: 'Eine Fotostory aus Griechenland',
     hero: photo(1, 'Verbrannte Landschaft mit kahlen Bäumen'),
     blocks: [
@@ -243,7 +243,7 @@ const paths: Record<Lang, Record<string, string>> = {
   en: { wildfires: 'en/wildfires/', olives: 'en/olive-press/' },
 };
 
-// Text fields that are shown to readers. Story titles are English in both languages.
+// Text fields that are shown to readers. Story titles without a translation (Makris | Olives) stay the same.
 const textKeys = new Set(['text', 'label', 'kicker', 'alt', 'caption', 'info', 'value', 'by', 'title']);
 
 function translate(value: unknown, key: string): unknown {

@@ -355,6 +355,16 @@ figure img { width: 100%; }
   .next { height: 60svh; }
 }
 
+@media (max-width: 400px) {
+  .v-a .bar-home { font-size: 1.125rem; }
+  .bar-nav a { padding: 10px 5px; font-size: .8125rem; }
+  .bar-lang { margin-left: 2px; padding: 10px 6px !important; font-size: .6875rem; }
+}
+@media (max-width: 340px) {
+  .v-a .bar-home { font-size: 1rem; }
+  .bar-nav a { padding: 10px 4px; font-size: .75rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-reveal], .v-b [data-reveal] img { opacity: 1; transform: none; transition: none; }
   .hero-media, .drift-item, .photo-zoom img { transform: none; }
