@@ -23,7 +23,9 @@ export type Block =
   | { type: 'photo'; photo: Photo; caption?: string; size?: 'full' | 'wide' | 'narrow'; info?: string }
   | { type: 'row'; photos: { photo: Photo; caption?: string; info?: string }[]; info?: string; narrow?: boolean }
   | { type: 'split'; photo: Photo; caption?: string; text: string[]; reverse?: boolean; info?: boolean }
-  | { type: 'drift'; photos: Photo[] }
+  | { type: 'drift'; photos: Photo[]; narrow?: boolean }
+  // Photos that replace each other in one frame while their texts scroll past
+  | { type: 'timeline'; steps: { photo: Photo; label: string; text: string }[] }
   | { type: 'video'; youtube: string; title: string; photo: Photo; text: string }
   | { type: 'gallery'; photos: Photo[]; label: string };
 
@@ -67,14 +69,7 @@ export const stories: Story[] = [
           'Die Untersuchungen beziffern die Schadenskosten auf über 1,8 Milliarden Euro.',
         ],
       },
-      {
-        type: 'row',
-        narrow: true,
-        photos: [
-          { photo: photo(6, 'Verkohlte Rinde, Nahaufnahme') },
-          { photo: photo(7, 'Verkohltes Holz, Nahaufnahme') },
-        ],
-      },
+      { type: 'drift', narrow: true, photos: [photo(6, 'Verkohlte Rinde, Nahaufnahme'), photo(7, 'Verkohltes Holz, Nahaufnahme')] },
       { type: 'fact', value: '1,8 Mrd. €', label: 'Schadenskosten durch die Brände des Jahres 2023' },
       {
         type: 'text',
@@ -88,25 +83,30 @@ export const stories: Story[] = [
         ],
       },
       {
-        type: 'text',
-        text: ['Auch die wirtschaftlichen und landwirtschaftlichen Folgen sind gravierend. Verbrannte Felder und Weideflächen bedrohen Existenzen, während Schäden an der Infrastruktur hohe Kosten verursachen.'],
-      },
-      { type: 'photo', photo: photo(10, 'Olivenhain am Rand der verbrannten Fläche'), size: 'wide' },
-      {
-        type: 'split',
-        photo: photo(11, 'Verbrannter Baumstumpf mit neuem Grün'),
-        text: ['Verbrannte Böden benötigen Zeit, um sich zu regenerieren. In den ersten Monaten nach einem Brand bleibt die Erde oft unfruchtbar, da Nährstoffe verloren gehen und die natürliche Bodenstruktur zerstört ist. Ohne Schutz durch Vegetation verstärkt sich zudem die Erosion.'],
+        type: 'photo',
+        photo: photo(10, 'Olivenhain am Rand der verbrannten Fläche'),
+        size: 'wide',
+        info: 'Auch die wirtschaftlichen und landwirtschaftlichen Folgen sind gravierend. Verbrannte Felder und Weideflächen bedrohen Existenzen, während Schäden an der Infrastruktur hohe Kosten verursachen.',
       },
       {
-        type: 'split',
-        reverse: true,
-        photo: photo(12, 'Erste Pflanzen auf verbranntem Boden'),
-        text: ['Nach einiger Zeit beginnt die Natur sich zu erholen. Pionierpflanzen wie Gräser und Sträucher kehren als Erste zurück und stabilisieren den Boden. Mikroorganismen und Insekten tragen zur Wiederherstellung der Nährstoffkreisläufe bei, wodurch langsam neues Leben entsteht.'],
-      },
-      {
-        type: 'split',
-        photo: photo(13, 'Rote junge Triebe zwischen verkohlten Ästen'),
-        text: ['Die vollständige Regeneration kann Jahre bis Jahrzehnte dauern. Wälder wachsen nur langsam nach, und manche Ökosysteme verändern sich dauerhaft. Durch Aufforstung und Bodenschutzmaßnahmen lässt sich der Prozess jedoch beschleunigen und die Widerstandskraft der Landschaft stärken.'],
+        type: 'timeline',
+        steps: [
+          {
+            photo: photo(11, 'Verbrannter Baumstumpf mit neuem Grün'),
+            label: 'Nach dem Brand',
+            text: 'Verbrannte Böden benötigen Zeit, um sich zu regenerieren. In den ersten Monaten nach einem Brand bleibt die Erde oft unfruchtbar, da Nährstoffe verloren gehen und die natürliche Bodenstruktur zerstört ist. Ohne Schutz durch Vegetation verstärkt sich zudem die Erosion.',
+          },
+          {
+            photo: photo(12, 'Erste Pflanzen auf verbranntem Boden'),
+            label: 'Nach einiger Zeit',
+            text: 'Nach einiger Zeit beginnt die Natur sich zu erholen. Pionierpflanzen wie Gräser und Sträucher kehren als Erste zurück und stabilisieren den Boden. Mikroorganismen und Insekten tragen zur Wiederherstellung der Nährstoffkreisläufe bei, wodurch langsam neues Leben entsteht.',
+          },
+          {
+            photo: photo(13, 'Rote junge Triebe zwischen verkohlten Ästen'),
+            label: 'Nach Jahren',
+            text: 'Die vollständige Regeneration kann Jahre bis Jahrzehnte dauern. Wälder wachsen nur langsam nach, und manche Ökosysteme verändern sich dauerhaft. Durch Aufforstung und Bodenschutzmaßnahmen lässt sich der Prozess jedoch beschleunigen und die Widerstandskraft der Landschaft stärken.',
+          },
+        ],
       },
     ],
   },

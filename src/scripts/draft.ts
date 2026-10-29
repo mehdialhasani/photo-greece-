@@ -2,7 +2,7 @@ import Lenis from 'lenis';
 
 // Interactions for the redesigned drafts: reveal on scroll, the sign lettering, parallax,
 // reading progress, the menu bar, info toggles, carousel counter, count-up facts,
-// lightbox and lazily embedded video.
+// lightbox, the regrowth timeline and lazily embedded video.
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (t: number) => Math.min(1, Math.max(0, t));
@@ -48,6 +48,44 @@ function setupInfo() {
       const open = button.getAttribute('aria-expanded') !== 'true';
       button.setAttribute('aria-expanded', String(open));
       button.closest('.frame')?.classList.toggle('open', open);
+    });
+  });
+}
+
+// One step is active at a time: the last text that has passed the middle of the screen.
+// Clicking the photo or a dash jumps to the next or that step.
+// On phones the photo sticks to the top, so texts count from its lower edge
+let scrollTo = (el: HTMLElement, offset: number) => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - offset, behavior: reduceMotion ? 'auto' : 'smooth' });
+const phone = window.matchMedia('(max-width: 767px)');
+const timelines: (() => void)[] = [];
+function setupTimeline() {
+  document.querySelectorAll<HTMLElement>('[data-timeline]').forEach((timeline) => {
+    const photos = [...timeline.querySelectorAll<HTMLElement>('.timeline-stage img')];
+    const dots = [...timeline.querySelectorAll<HTMLElement>('.timeline-dots button')];
+    const steps = [...timeline.querySelectorAll<HTMLElement>('.timeline-step')];
+    const stage = timeline.querySelector<HTMLElement>('.timeline-stage')!;
+    const top = () => (phone.matches ? stage.getBoundingClientRect().bottom : window.innerHeight * 0.3);
+    const go = (i: number) => scrollTo(steps[i], top());
+    let current = -1;
+    const show = (index: number) => {
+      if (index === current) return;
+      current = index;
+      photos.forEach((p, i) => p.classList.toggle('on', i === index));
+      steps.forEach((s, i) => s.classList.toggle('on', i === index));
+      dots.forEach((d, i) => (i === index ? d.setAttribute('aria-current', 'step') : d.removeAttribute('aria-current')));
+    };
+    dots.forEach((dot, i) => dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      go(i);
+    }));
+    stage.addEventListener('click', () => go((current + 1) % steps.length));
+    timelines.push(() => {
+      const line = phone.matches ? top() + window.innerHeight * 0.12 : window.innerHeight * 0.62;
+      let index = 0;
+      steps.forEach((step, i) => {
+        if (step.getBoundingClientRect().top < line) index = i;
+      });
+      show(index);
     });
   });
 }
@@ -130,6 +168,8 @@ function update() {
     const rect = drift.getBoundingClientRect();
     drift.style.setProperty('--d', String(clamp((vh - rect.top) / (vh + rect.height)) * 2 - 1));
   });
+
+  timelines.forEach((check) => check());
 }
 
 let lastY = 0;
@@ -150,6 +190,7 @@ export function init() {
   setupReveal();
   setupLightbox();
   setupInfo();
+  setupTimeline();
   setupCarousel();
   setupCount();
   setupVideos();
@@ -165,6 +206,7 @@ export function init() {
     return;
   }
   const lenis = new Lenis({ lerp: 0.12 });
+  scrollTo = (el, offset) => lenis.scrollTo(el, { offset: -offset });
   const raf = (time: number) => {
     lenis.raf(time);
     frame();

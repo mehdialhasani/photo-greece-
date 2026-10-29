@@ -48,7 +48,7 @@ let infoId = 0;
         case 'fact':
           return (
             <div class="fact" data-reveal>
-              <span class="fact-value" data-count={variant === 'b' ? block.value : undefined}>{block.value}</span>
+              <span class="fact-value" data-count={block.value}>{block.value}</span>
               <span class="fact-label">{block.label}</span>
             </div>
           );
@@ -71,6 +71,9 @@ let infoId = 0;
             <figure class={`photo photo-${block.size ?? 'wide'}`} data-reveal>
               <Pic photo={block.photo} sizes={block.size === 'full' ? '100vw' : '(max-width: 767px) 100vw, 80vw'} />
               {block.caption && <figcaption>{block.caption}</figcaption>}
+              {block.info && (
+                <details class="more"><summary>Mehr erfahren</summary><p>{block.info}</p></details>
+              )}
             </figure>
           );
         case 'row': {
@@ -120,12 +123,35 @@ let infoId = 0;
           );
         case 'drift':
           return (
-            <section class="drift" data-drift>
+            <section class={`drift${block.narrow ? ' drift-narrow' : ''}`} data-drift>
               {block.photos.map((p, i) => (
                 <figure class={`drift-item drift-${i}`}>
                   <Pic photo={p} sizes="(max-width: 767px) 70vw, 45vw" />
                 </figure>
               ))}
+            </section>
+          );
+        case 'timeline':
+          return (
+            <section class="timeline" data-timeline>
+              <div class="timeline-stage">
+                {block.steps.map((step, i) => (
+                  <Pic photo={step.photo} sizes={half} zoom={false} class={i === 0 ? 'on' : undefined} />
+                ))}
+                <div class="timeline-dots">
+                  {block.steps.map((step, i) => (
+                    <button type="button" aria-label={step.label} aria-current={i === 0 ? 'step' : undefined}></button>
+                  ))}
+                </div>
+              </div>
+              <div class="timeline-steps">
+                {block.steps.map((step) => (
+                  <div class="timeline-step text">
+                    <p class="kicker">{step.label}</p>
+                    <p>{step.text}</p>
+                  </div>
+                ))}
+              </div>
             </section>
           );
         case 'video':
