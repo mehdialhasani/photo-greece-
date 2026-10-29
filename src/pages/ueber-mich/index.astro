@@ -8,6 +8,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 <DraftBase title="Über mich | Mehdi Al-Hasani" variant="a">
   <Legal lang="de" page="about">
+    <img class="portrait" src={base + 'img/portrait-707.webp'} srcset={`${base}img/portrait-400.webp 400w, ${base}img/portrait-707.webp 707w`} sizes="(max-width: 767px) 60vw, 300px" width="707" height="1044" alt="Porträt von Mehdi Al-Hasani" />
     <h1>Über mich</h1>
     <p>Ich bin Mehdi Al-Hasani und lebe in Hannover. Hier zeige ich meine Fotostorys aus Griechenland: über die Waldbrände und über eine Olivenpresse in Makri.</p>
 

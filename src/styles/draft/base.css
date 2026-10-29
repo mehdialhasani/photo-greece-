@@ -291,6 +291,7 @@ figure img { width: 100%; }
 .legal p + p, .legal p + ul, .legal ul + p { margin-top: .8em; }
 .legal ul { padding-left: 1.2em; }
 .legal a { text-underline-offset: 2px; }
+.portrait { display: block; width: min(60vw, 300px); height: auto; margin-bottom: 40px; }
 
 /* Lightbox */
 .lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 3vmin; background: rgba(12, 12, 11, .94); cursor: zoom-out; opacity: 0; transition: opacity .25s; }
