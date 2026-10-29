@@ -1,0 +1,2018 @@
+{
+ "width": 1024,
+ "maxWidth": 3600,
+ "global": [
+  {
+   "x": 91,
+   "y": 115.5,
+   "w": 62,
+   "h": 12,
+   "z": 327,
+   "id": "675f01ea66e0c1036b4fd265",
+   "type": "shape",
+   "anims": [
+    {
+     "type": "click",
+     "trigger": [
+      "675f01f4e6ea042d18fe21a6",
+      "675f01f50cf96b8b613de606",
+      "675f01ea66e0c1036b4fd265"
+     ],
+     "duration": 0.5,
+     "delay": 0,
+     "ease": "ease-both",
+     "speed": 1,
+     "start": "bottom",
+     "offset": 0,
+     "move": [
+      0,
+      -30
+     ],
+     "opacity": null,
+     "rotate": [
+      1,
+      -45
+     ]
+    }
+   ],
+   "shape": {
+    "bg": "rgba(240,192,81,1)",
+    "radius": 0,
+    "shadow": true
+   },
+   "fixed": true
+  },
+  {
+   "x": 91,
+   "y": 136.53,
+   "w": 62,
+   "h": 12,
+   "z": 328,
+   "id": "675f01f4e6ea042d18fe21a6",
+   "type": "shape",
+   "anims": [
+    {
+     "type": "click",
+     "trigger": [
+      "675f01f50cf96b8b613de606",
+      "675f01ea66e0c1036b4fd265",
+      "675f01f4e6ea042d18fe21a6"
+     ],
+     "duration": 0.5,
+     "delay": 0,
+     "ease": "ease-both",
+     "speed": 1,
+     "start": "bottom",
+     "offset": 0,
+     "move": [
+      0,
+      -58
+     ],
+     "opacity": null,
+     "rotate": null
+    }
+   ],
+   "shape": {
+    "bg": "rgba(240,192,81,1)",
+    "radius": 0,
+    "shadow": true
+   },
+   "fixed": true
+  },
+  {
+   "x": 91,
+   "y": 95.5,
+   "w": 62,
+   "h": 12,
+   "z": 329,
+   "id": "675f01f50cf96b8b613de606",
+   "type": "shape",
+   "anims": [],
+   "shape": {
+    "bg": "rgba(240,192,81,1)",
+    "radius": 1,
+    "shadow": true
+   },
+   "fixed": true
+  },
+  {
+   "x": 163,
+   "y": 83.5,
+   "w": 99,
+   "h": 75,
+   "z": 330,
+   "id": "675f03a0d80ba11fcbb209d2",
+   "type": "text",
+   "anims": [
+    {
+     "type": "click",
+     "trigger": [
+      "675f01ea66e0c1036b4fd265",
+      "675f01f4e6ea042d18fe21a6",
+      "675f01f50cf96b8b613de606"
+     ],
+     "duration": 0.5,
+     "delay": 0,
+     "ease": "ease-both",
+     "speed": 1,
+     "start": "bottom",
+     "offset": 0,
+     "move": null,
+     "opacity": [
+      0.0,
+      1.0
+     ],
+     "rotate": null
+    }
+   ],
+   "html": "<p style=\"line-height:25px;text-align:left\"><a href=\"{BASE}/\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(255,255,255,1)\">wildfires </span></a></p><p style=\"line-height:25px;text-align:left\"><a href=\"{BASE}/olivenpresse/\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(255,255,255,1)\">olive oil </span></a></p><p style=\"line-height:25px;text-align:left\">&nbsp;</p>",
+   "fontSize": 18,
+   "fixed": true
+  }
+ ],
+ "pages": [
+  {
+   "slug": "",
+   "title": "Wildfires | Greece",
+   "height": 7600,
+   "bg": "#ffffff",
+   "widgets": [
+    {
+     "x": 0,
+     "y": -4,
+     "w": 1023,
+     "h": 708,
+     "z": 302,
+     "id": "675ee818cab2f8917e7cc3c0",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 1,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       110,
+       0,
+       5780,
+       4000
+      ],
+      "orig": [
+       6000,
+       4000
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 420,
+     "y": 64,
+     "w": 533,
+     "h": 101,
+     "z": 303,
+     "id": "675ee8f0f1460fce66faf958",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-out",
+       "speed": 0.8,
+       "start": "bottom",
+       "offset": 0,
+       "move": [
+        -100,
+        605
+       ],
+       "opacity": null,
+       "rotate": null
+      },
+      {
+       "type": "load",
+       "trigger": [],
+       "duration": 0.8,
+       "delay": 0.5,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:101px;text-align:left\"><span style=\"font-family:'Bebas Neue';font-size:80px;font-weight:400;font-style:normal;color:rgba(240,192,81,1);letter-spacing:3px\">Wildfires|Greece</span></p>",
+     "fontSize": 80
+    },
+    {
+     "x": 193,
+     "y": 1337,
+     "w": 324,
+     "h": 486,
+     "z": 305,
+     "id": "675eeb4ed88994c0ff06b5ca",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 2,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       4000,
+       6000
+      ],
+      "orig": [
+       4000,
+       6000
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 262,
+     "y": 1471,
+     "w": 597,
+     "h": 90,
+     "z": 304,
+     "id": "675eec474c30a479187a53c3",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 150,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:90px;text-align:right\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:67px\">Αλεξανδρουπολη</span></p>",
+     "fontSize": 67
+    },
+    {
+     "x": 188,
+     "y": 1536,
+     "w": 597,
+     "h": 90,
+     "z": 301,
+     "id": "675eedc5c29170fd36eeb654",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 150,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:90px;text-align:right\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:67px\">Alexandroupoli</span></p>",
+     "fontSize": 67
+    },
+    {
+     "x": 48,
+     "y": 2400,
+     "w": 928,
+     "h": 608,
+     "z": 306,
+     "id": "675ef1f80004accf12e9e9d0",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 100,
+       "move": [
+        0,
+        -65
+       ],
+       "opacity": [
+        0.1,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 3,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       34.482758620689765,
+       6000,
+       3931.0344827586205
+      ],
+      "orig": [
+       6000,
+       4000
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 214,
+     "y": 2432,
+     "w": 596,
+     "h": 70,
+     "z": 307,
+     "id": "675ef2fbc29170fd36ef3308",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 180,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:25px;text-align:left;padding-bottom:10px\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;font-size:18px;color:rgba(255,255,255,1)\">Die EU-Kommission meldete über 175.000 Hektar verbranntes Land. </span></p><p style=\"line-height:25px;text-align:left;padding-bottom:10px\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;font-size:18px;color:rgba(255,255,255,1)\">Etwa zwei Dutzend Menschen sind den Bränden zum Opfer gefallen.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 564,
+     "y": 1626,
+     "w": 377,
+     "h": 175,
+     "z": 308,
+     "id": "675ef30e763e5facfd9471b5",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 160,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:18px\">In der Nähe von Alexandroupolis verbrannte eine Fläche so groß wie Hamburg.</span></p><p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1);font-size:18px\">Die größten Brände in der EU-Geschichte. Mehrere Wochen kämpfen Feuerwehrleute im ganzen Land, besonders betroffen ist die Region nordöstlich von Alexandroupolis nahe der türkischen Grenze.<br></span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 164,
+     "y": 3784,
+     "w": 324,
+     "h": 486,
+     "z": 310,
+     "id": "678a8fe6a3f26c0594418d2d",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 5,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       3855,
+       5782
+      ],
+      "orig": [
+       3855,
+       5783
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 938,
+     "y": 3784,
+     "w": 149,
+     "h": 223,
+     "z": 311,
+     "id": "678a913ba50c85a18cee7572",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 150,
+       "move": [
+        -200,
+        0
+       ],
+       "opacity": null,
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 6,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       6.711409395973078,
+       4000,
+       5986.577181208054
+      ],
+      "orig": [
+       4000,
+       6000
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 938,
+     "y": 4046,
+     "w": 149,
+     "h": 224,
+     "z": 312,
+     "id": "678a91975f3f9b0ae63c8b76",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 150,
+       "move": [
+        -200,
+        0
+       ],
+       "opacity": null,
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 7,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       4.464285714285779,
+       0,
+       3991.0714285714284,
+       6000
+      ],
+      "orig": [
+       4000,
+       6000
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 513,
+     "y": 3808,
+     "w": 225,
+     "h": 312,
+     "z": 313,
+     "id": "678a938a38480df7c71fc487",
+     "type": "text",
+     "anims": [],
+     "html": "<p style=\"line-height:26px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Eine Analyse der EFFIS-Daten (European Forest Fire Information System) bestätigt, dass in Griechenland im Jahr 2023 ca. 174.770 Hektar Land verbrannt sind. </span></p><p style=\"line-height:26px;text-align:left\">&nbsp;</p><p style=\"line-height:26px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die Untersuchungen beziffern die Schadenskosten auf über 1,8 Milliarden Euro.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 48,
+     "y": 3104,
+     "w": 928,
+     "h": 608,
+     "z": 314,
+     "id": "678a9502d763e30c2e08670a",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": [
+        0,
+        -65
+       ],
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 4,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       33.13793103448279,
+       5795,
+       3796.7241379310344
+      ],
+      "orig": [
+       5795,
+       3863
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 178,
+     "y": 4634,
+     "w": 324,
+     "h": 486,
+     "z": 315,
+     "id": "678a955c3e90435edb7c58a5",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 8,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0.25,
+       3667,
+       5500.5
+      ],
+      "orig": [
+       3667,
+       5501
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 526,
+     "y": 4634,
+     "w": 324,
+     "h": 486,
+     "z": 316,
+     "id": "678a95624baa2dc6069d7ba2",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 9,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       4000,
+       6000
+      ],
+      "orig": [
+       4000,
+       6000
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 176,
+     "y": 5984,
+     "w": 324,
+     "h": 487,
+     "z": 317,
+     "id": "678a97ef38480df7c72086e5",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 11,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       4,
+       0,
+       3766,
+       5661
+      ],
+      "orig": [
+       3774,
+       5661
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 167,
+     "y": 7040,
+     "w": 458,
+     "h": 320,
+     "z": 318,
+     "id": "678a9844f4ae84237c0c4574",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 13,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       186,
+       34,
+       5629,
+       3933
+      ],
+      "orig": [
+       6000,
+       4000
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 524,
+     "y": 6592,
+     "w": 452,
+     "h": 320,
+     "z": 319,
+     "id": "678a9868474725879b0425d3",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 12,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       223,
+       34,
+       5555,
+       3933
+      ],
+      "orig": [
+       6000,
+       4000
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 176,
+     "y": 5468,
+     "w": 690,
+     "h": 452,
+     "z": 320,
+     "id": "678a99a6d763e30c2e09396d",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 100,
+       "move": [
+        0,
+        -45
+       ],
+       "opacity": [
+        0.1,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 10,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       34.78260869565224,
+       6000,
+       3930.4347826086955
+      ],
+      "orig": [
+       6000,
+       4000
+      ]
+     },
+     "lightbox": true
+    },
+    {
+     "x": 168,
+     "y": 825,
+     "w": 730,
+     "h": 333,
+     "z": 321,
+     "id": "6799ef10603d10c9a94cd557",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1.2,
+       "start": "bottom",
+       "offset": 80,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:37px;text-align:center\"><span style=\"font-family:'Inter';font-size:28px;font-weight:400;font-style:normal;color:rgba(125,131,125,1);letter-spacing:3px\">Waldbrände sind kein neues Phänomen, doch ihre Häufigkeit und Zerstörungskraft nehmen spürbar zu. Längere Trockenperioden und steigende Temperaturen lassen Feuer zu einer ständigen Bedrohung werden. Was früher Teil natürlicher Regeneration war, hinterlässt heute verbrannte Erde und eine Landschaft, die sich mit jedem Brand </span></p><p style=\"line-height:37px;text-align:center\"><span style=\"font-family:'Inter';font-size:28px;font-weight:400;font-style:normal;color:rgba(125,131,125,1);letter-spacing:3px\">extrem verändert.</span></p>",
+     "fontSize": 28
+    },
+    {
+     "x": 236,
+     "y": 4352,
+     "w": 637,
+     "h": 165,
+     "z": 322,
+     "id": "679a004beff6ae594eed5a99",
+     "type": "text",
+     "anims": [],
+     "html": "<p style=\"line-height:33px;text-align:center\"><span style=\"color:rgba(125,131,125,1);font-weight:400;font-style:normal;font-family:'Inter';font-size:22px\">Waldbrände richten massive ökologische Schäden an. Sie zerstören Wälder, vernichten Lebensräume und beschleunigen die Bodenerosion, was die Regeneration erschwert. Zudem setzen sie große Mengen CO₂ frei und beschleunigen so den Klimawandel.</span></p>",
+     "fontSize": 22
+    },
+    {
+     "x": 286,
+     "y": 5224,
+     "w": 480,
+     "h": 120,
+     "z": 323,
+     "id": "679a018088f5fd1a97930310",
+     "type": "text",
+     "anims": [],
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Auch die wirtschaftlichen und landwirtschaftlichen Folgen sind gravierend. Verbrannte Felder und Weideflächen bedrohen Existenzen, während Schäden an der Infrastruktur hohe Kosten verursachen. .</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 524,
+     "y": 6080,
+     "w": 413,
+     "h": 240,
+     "z": 324,
+     "id": "679a038ad4b135e6e15fe33e",
+     "type": "text",
+     "anims": [],
+     "html": "<p style=\"line-height:40px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Verbrannte Böden benötigen Zeit, um sich zu regenerieren. In den ersten Monaten nach einem Brand bleibt die Erde oft unfruchtbar, da Nährstoffe verloren gehen und die natürliche Bodenstruktur zerstört ist. Ohne Schutz durch Vegetation verstärkt sich zudem die Erosion.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 176,
+     "y": 6594,
+     "w": 324,
+     "h": 350,
+     "z": 325,
+     "id": "679a03cb64d5e24d932dab72",
+     "type": "text",
+     "anims": [],
+     "html": "<p style=\"line-height:40px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Nach einiger Zeit beginnt die Natur sich zu erholen. Pionierpflanzen wie Gräser und Sträucher kehren als Erste zurück und stabilisieren den Boden. Mikroorganismen und Insekten tragen zur Wiederherstellung der Nährstoffkreisläufe bei, wodurch langsam neues Leben entsteht.</span></p><p style=\"line-height:30px;text-align:left\">&nbsp;</p>",
+     "fontSize": 18
+    },
+    {
+     "x": 650,
+     "y": 7040,
+     "w": 326,
+     "h": 345,
+     "z": 326,
+     "id": "679a040676402805edd5f847",
+     "type": "text",
+     "anims": [],
+     "html": "<p style=\"line-height:35px;text-align:left\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die vollständige Regeneration kann Jahre bis Jahrzehnte dauern. Wälder wachsen nur langsam nach, und manche Ökosysteme verändern sich dauerhaft. Durch Aufforstung und Bodenschutzmaßnahmen lässt sich der Prozess jedoch beschleunigen und die Widerstandskraft der Landschaft stärken.</span></p><p style=\"line-height:30px;text-align:left\">&nbsp;</p>",
+     "fontSize": 18
+    }
+   ]
+  },
+  {
+   "slug": "olivenpresse",
+   "title": "Makris | Olives",
+   "height": 6000,
+   "bg": "#ffffff",
+   "widgets": [
+    {
+     "x": -1,
+     "y": -1,
+     "w": 1025,
+     "h": 609,
+     "z": 301,
+     "id": "675ef552194f686f7969bf01",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 14,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       217.56097560975604,
+       6000,
+       3564.878048780488
+      ],
+      "orig": [
+       6000,
+       4000
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 176,
+     "y": 3488,
+     "w": 225,
+     "h": 395,
+     "z": 302,
+     "id": "675f096be6e1dc69cf503278",
+     "type": "video",
+     "anims": [],
+     "youtube": "pY-P75QAtQI",
+     "title": "IMG 1031"
+    },
+    {
+     "x": 262,
+     "y": 694,
+     "w": 238,
+     "h": 357,
+     "z": 303,
+     "id": "675f409c1ed33959d243a212",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 75,
+       "move": [
+        0,
+        -45
+       ],
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 15,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       3904,
+       5856
+      ],
+      "orig": [
+       3904,
+       5856
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 500,
+     "y": 64,
+     "w": 453,
+     "h": 101,
+     "z": 304,
+     "id": "675f4133888f603361ba7472",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-out",
+       "speed": 0.8,
+       "start": "bottom",
+       "offset": 0,
+       "move": [
+        -100,
+        502
+       ],
+       "opacity": null,
+       "rotate": null
+      },
+      {
+       "type": "load",
+       "trigger": [],
+       "duration": 0.8,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:101px;text-align:right\"><span style=\"font-family:'Bebas Neue';font-size:80px;font-weight:400;font-style:normal;color:rgba(240,192,81,1);letter-spacing:3px\">MaKris|Olives</span></p>",
+     "fontSize": 80
+    },
+    {
+     "x": 532,
+     "y": 731,
+     "w": 303,
+     "h": 275,
+     "z": 305,
+     "id": "675f44a32430743a2fabd109",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 75,
+       "move": [
+        0,
+        -45
+       ],
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-size:18px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Der Olivenanbau in dieser Region hat eine lange Tradition und ist eng mit der lokalen Identität und Lebensweise verknüpft. </span></p><p style=\"line-height:25px;text-align:left\">&nbsp;</p><p style=\"line-height:25px;text-align:left\"><span style=\"font-family:'Inter';font-size:18px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die alten Olivenbäume von Makri, geprägt durch das gemäßigte Klima und die besonderen Böden, zeugen von einer jahrhundertealten Verbindung zwischen Mensch und Landschaft.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 262,
+     "y": 1006,
+     "w": 135,
+     "h": 18,
+     "z": 306,
+     "id": "675f45716cfa50ee1c22e8f5",
+     "type": "text",
+     "anims": [
+      {
+       "type": "hover",
+       "trigger": [
+        "675f409c1ed33959d243a212"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:18px;text-align:left\"><span style=\"font-family:'Inter';font-size:12px;font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Alexandros </span></p>",
+     "fontSize": 12
+    },
+    {
+     "x": 158,
+     "y": 2816,
+     "w": 238,
+     "h": 357,
+     "z": 307,
+     "id": "675f47ece6e1dc69cf563d5b",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 75,
+       "move": [
+        0,
+        -45
+       ],
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 21,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       3770,
+       5655
+      ],
+      "orig": [
+       3770,
+       5655
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 629,
+     "y": 2816,
+     "w": 238,
+     "h": 357,
+     "z": 308,
+     "id": "675f47f8ec7f9c42f23411a5",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 75,
+       "move": [
+        0,
+        -45
+       ],
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 22,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0.25,
+       3825,
+       5737.5
+      ],
+      "orig": [
+       3825,
+       5738
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 158,
+     "y": 2912,
+     "w": 238,
+     "h": 38,
+     "z": 310,
+     "id": "679a6141e5b66049b57e79b1",
+     "type": "text",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "675f47ece6e1dc69cf563d5b"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:38px;text-align:center\"><span style=\"color:rgba(255,255,255,1);font-weight:400;font-style:normal;font-family:'Bebas Neue';font-size:25px\">Parris| Christos | Vassili</span></p>",
+     "fontSize": 25
+    },
+    {
+     "x": 159,
+     "y": 3168,
+     "w": 236,
+     "h": 150,
+     "z": 311,
+     "id": "679a619430772a49a2973286",
+     "type": "text",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "675f47ece6e1dc69cf563d5b"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "top",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die drei Farmer haben ihre Höfe in der Umgebung und kommen seit vielen Jahren zur Fabrik von Alexandros, um ihre Oliven zu pressen.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 586,
+     "y": 3168,
+     "w": 323,
+     "h": 266,
+     "z": 312,
+     "id": "679a64ab951da3424f08f2ed",
+     "type": "text",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "675f47f8ec7f9c42f23411a5"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "top",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:26px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Vassili:</span></p><p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\"> &quot;Ich habe von ca. 60 Bäumen fast 20% verloren. Die meisten Schäden sind durch die Hitze im Boden entstanden. Die beschädigten Bäume benötigen noch drei bis fünf Jahre, bis sie wieder gute Oliven tragen. Die neu gepflanzten Bäume eher zehn bis fünfzehn.   </span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 353,
+     "y": 2740,
+     "w": 325,
+     "h": 12,
+     "z": 313,
+     "id": "679a6517ee637a089d075f08",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "center",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "click",
+       "trigger": [
+        "675f47ece6e1dc69cf563d5b",
+        "675f47f8ec7f9c42f23411a5"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:12px;text-align:center\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,0.57);font-size:12px\">klicke gerne auf die Bilder für mehr Informationen</span></p>",
+     "fontSize": 12
+    },
+    {
+     "x": 524,
+     "y": 3520,
+     "w": 452,
+     "h": 320,
+     "z": 314,
+     "id": "679a6d0f0d7da19b23d956e6",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 24,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       168.5250000000001,
+       0,
+       5440.95,
+       3852
+      ],
+      "orig": [
+       5778,
+       3852
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 524,
+     "y": 3872,
+     "w": 452,
+     "h": 208,
+     "z": 315,
+     "id": "679a6d3509e5137ac4361b0b",
+     "type": "text",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "679a6d0f0d7da19b23d956e6"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "top",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Als einer der letzten Schritte im Herstellungsprozess wird hier Olivenöl von Wasser und pflanzlichen Flüssigkeiten getrennt.</span></p><p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Danach wird es gefiltert, um alle restlichen Schwebstoffe zu entfernen und das Öl dadurch klarer und haltbarer zu machen.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 858,
+     "y": 1676,
+     "w": 240.02,
+     "h": 360,
+     "z": 316,
+     "id": "679a77610d7da19b23db60cf",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 180,
+       "move": [
+        -621,
+        65
+       ],
+       "opacity": null,
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 16,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       3947,
+       5920
+      ],
+      "orig": [
+       3947,
+       5920
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 287,
+     "y": 1696,
+     "w": 480,
+     "h": 320,
+     "z": 317,
+     "id": "679a776dc72de5ec832b1ab8",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 180,
+       "move": [
+        -545,
+        65
+       ],
+       "opacity": null,
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 17,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       5763,
+       3842
+      ],
+      "orig": [
+       5763,
+       3842
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 681,
+     "y": 2176,
+     "w": 240,
+     "h": 360,
+     "z": 318,
+     "id": "679a79f7e24ea92df95bbddd",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 20,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       3736,
+       5604
+      ],
+      "orig": [
+       3736,
+       5604
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 422,
+     "y": 2176,
+     "w": 240,
+     "h": 360,
+     "z": 319,
+     "id": "679a79fdfa629372dace2b8c",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 19,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       3966,
+       5949
+      ],
+      "orig": [
+       3966,
+       5949
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 161,
+     "y": 2176,
+     "w": 240,
+     "h": 360,
+     "z": 320,
+     "id": "679a7a10504bce524a0900d6",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 18,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       3970,
+       5955
+      ],
+      "orig": [
+       3970,
+       5955
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 162,
+     "y": 2568,
+     "w": 758,
+     "h": 90,
+     "z": 321,
+     "id": "679a7a6e26204717a43776ea",
+     "type": "text",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "679a79fdfa629372dace2b8c",
+        "679a79f7e24ea92df95bbddd",
+        "679a7a10504bce524a0900d6"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "top",
+       "offset": -150,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Viele Kleinbauern oder Familien mit Olivenbäumen kommen aus der Umgebung und lassen hier ihre Oliven pressen. Entweder wird für den eigenen Konsum gepresst, oder um es zu verkaufen. Es kommen auch Großbauern mit größerem Produktionsvolumen.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 356,
+     "y": 2144,
+     "w": 325,
+     "h": 12,
+     "z": 322,
+     "id": "679a7d9f504bce524a09b64c",
+     "type": "text",
+     "anims": [
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "center",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "click",
+       "trigger": [
+        "679a7a10504bce524a0900d6",
+        "679a79fdfa629372dace2b8c",
+        "679a79f7e24ea92df95bbddd"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:12px;text-align:center\"><span style=\"font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,0.57);font-size:12px\">klicke gerne auf die Bilder für mehr Informationen</span></p>",
+     "fontSize": 12
+    },
+    {
+     "x": 102,
+     "y": 5376,
+     "w": 303,
+     "h": 457,
+     "z": 323,
+     "id": "679a7ec6a505c21bfb500740",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 29,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       11,
+       0,
+       3802,
+       5734
+      ],
+      "orig": [
+       3823,
+       5734
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 436,
+     "y": 5440,
+     "w": 452,
+     "h": 134,
+     "z": 324,
+     "id": "679a7f84e264fc81df2cde0d",
+     "type": "text",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "679a7ec6a505c21bfb500740"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "top",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Die Reste, welche beim Pressen übrigbleiben, nennt man Trester. Dieser kann vielseitig weiterverwertet werden - als Basis für Biokraftstoff, Tierfutter, oder für Kosmetikprodukte.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 436,
+     "y": 5610,
+     "w": 452,
+     "h": 164,
+     "z": 325,
+     "id": "679a8008983870389cc02563",
+     "type": "text",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "679a7ec6a505c21bfb500740"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "top",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "html": "<p style=\"line-height:30px;text-align:center\"><span style=\"font-size:18px;font-family:'Inter';font-weight:400;font-style:normal;color:rgba(125,131,125,1)\">Aus dem Trester kann auch Tresteröl gewonnen werden, dieses dient als Basis für günstige Frittierfette. Es wird jedoch auch für Industrieprodukte wie Schmierstoffe oder Bio-Kunststoffe verwendet.</span></p>",
+     "fontSize": 18
+    },
+    {
+     "x": 286,
+     "y": 4960,
+     "w": 476,
+     "h": 320,
+     "z": 326,
+     "id": "679a8c35c792e90e8e75587d",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "679a8e8c5052e22f31286072"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      },
+      {
+       "type": "scroll",
+       "trigger": [],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "top",
+       "offset": -100,
+       "move": null,
+       "opacity": [
+        1.0,
+        0.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 28,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       23,
+       0,
+       5468,
+       3676
+      ],
+      "orig": [
+       5514,
+       3676
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 272,
+     "y": 4128,
+     "w": 480,
+     "h": 320,
+     "z": 327,
+     "id": "679a8e8c5052e22f31286072",
+     "type": "picture",
+     "anims": [],
+     "img": {
+      "n": 25,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       0,
+       5457,
+       3638
+      ],
+      "orig": [
+       5457,
+       3638
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 201,
+     "y": 4480,
+     "w": 299,
+     "h": 448,
+     "z": 328,
+     "id": "679a8eb2983870389cc2c573",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "679a8e8c5052e22f31286072"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 26,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       3,
+       3545,
+       5312
+      ],
+      "orig": [
+       3545,
+       5317
+      ]
+     },
+     "lightbox": false
+    },
+    {
+     "x": 524,
+     "y": 4480,
+     "w": 299,
+     "h": 448,
+     "z": 329,
+     "id": "679a8ebf94a39626aa43b862",
+     "type": "picture",
+     "anims": [
+      {
+       "type": "click",
+       "trigger": [
+        "679a8e8c5052e22f31286072"
+       ],
+       "duration": 0.5,
+       "delay": 0,
+       "ease": "ease-both",
+       "speed": 1,
+       "start": "bottom",
+       "offset": 0,
+       "move": null,
+       "opacity": [
+        0.0,
+        1.0
+       ],
+       "rotate": null
+      }
+     ],
+     "img": {
+      "n": 27,
+      "widths": [
+       800,
+       1600,
+       2800
+      ],
+      "crop": [
+       0,
+       3,
+       3932,
+       5892
+      ],
+      "orig": [
+       3932,
+       5898
+      ]
+     },
+     "lightbox": false
+    }
+   ]
+  }
+ ]
+}
