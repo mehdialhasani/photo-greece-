@@ -30,7 +30,7 @@ let infoId = 0;
     {stories.map((s) => (
       <a href={base + s.path} aria-current={s.slug === slug ? 'page' : undefined}>{t[s.slug as 'wildfires' | 'olives' | 'demo']}</a>
     ))}
-    <a href={base + t.aboutPath}>{t.about}</a>
+    <a class="bar-about" href={base + t.aboutPath}>{t.about}</a>
     <a class="bar-lang" href={base + other.path} hreflang={lang === 'de' ? 'en' : 'de'} aria-label={t.otherLabel}>{t.other}</a>
   </nav>
   <span class="bar-progress" aria-hidden="true"></span>

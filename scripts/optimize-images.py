@@ -50,7 +50,6 @@ EXTRA = {
     66: 'neu-demo/DSCF6582.jpg',
     67: 'neu-demo/DSCF6609.jpg',
     68: 'neu-demo/DSCF6627.jpg',
-    69: 'neu-demo/DSCF6642.jpg',
 }
 
 

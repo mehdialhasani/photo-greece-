@@ -238,10 +238,13 @@ const de: Story[] = [
     path: 'hannover-demo/',
     title: ['Gegen die Presse', 'Hannover'],
     kicker: 'NPD-Demo in Hannover',
-    hero: photo(53, 'Kameraleute und Reporter in der Menge'),
+    hero: photo(68, 'Polizisten auf den Rolltreppen einer U-Bahn-Station'),
     teaser: photo(66, 'Polizeikette bei Nacht vor dem Neuen Rathaus'),
     blocks: [
-      { type: 'text', text: ['Hannover, 23. November 2019'] },
+      {
+        type: 'lead',
+        text: 'Am 23. November 2019 zieht die NPD durch die Südstadt von Hannover. Ihr Protest richtet sich gegen die Presse: Namentlich greift sie den NDR-Reporter Julian Feldmann, den Journalisten David Janzen und den Fotografen André Aden an, die über die rechtsextreme Szene berichten.',
+      },
       {
         type: 'row',
         photos: [
@@ -250,10 +253,36 @@ const de: Story[] = [
           { photo: photo(52, 'Polizeikette vor einem Gebäude') },
         ],
       },
+      {
+        type: 'text',
+        text: [
+          'Die Polizei hatte die Demonstration zunächst verboten. Sie sah eine unmittelbare Gefahr für die öffentliche Sicherheit, das Innenministerium auch für die Pressefreiheit. Das Verwaltungsgericht und das Oberverwaltungsgericht hoben das Verbot auf: Ein komplettes Verbot sei nicht verhältnismäßig.',
+        ],
+      },
+      { type: 'photo', photo: photo(53, 'Kameraleute und Reporter in der Menge'), size: 'wide' },
       { type: 'photo', photo: photo(54, 'Ein Mann spricht in ein Mikrofon, umringt von Kameras'), size: 'wide' },
       { type: 'photo', photo: photo(55, 'Gedränge zwischen Demonstranten und Fotografen'), size: 'full' },
-      { type: 'photo', photo: photo(56, 'Demonstrationszug mit Trommeln und Transparenten'), size: 'full', zoom: true },
+      {
+        type: 'text',
+        text: [
+          'Ein Anlass war Feldmanns Recherche über Karl Münter. Der frühere SS-Mann war 1944 am Massaker im französischen Ascq beteiligt und starb im September 2019 mit 96 Jahren. In den Tagen vor der Demo tauchten in Hannover Flyer mit der Parole „Rache für Karl“ auf.',
+        ],
+      },
+      {
+        type: 'photo',
+        photo: photo(56, 'Demonstrationszug mit Trommeln und Transparenten'),
+        size: 'full',
+        zoom: true,
+        info: 'Auf den Transparenten: „Gerechtigkeit für Karl“, ein durchgestrichenes Foto mit „Weg mit Feldmann“ und Schilder gegen den Rundfunkbeitrag.',
+      },
       { type: 'drift', photos: [photo(58, 'Ein Demonstrant ruft in Richtung der Fotografen'), photo(57, 'Junger Mann mit Trommel im Demonstrationszug')] },
+      { type: 'fact', value: '7.000', label: 'Menschen kamen laut Polizei zu den Gegendemonstrationen. Bei der NPD waren es rund 110.' },
+      {
+        type: 'text',
+        text: [
+          'Zur zentralen Gegenkundgebung rief das Bündnis „bunt statt braun“ auf. Dort sprachen Innenminister Boris Pistorius und Oberbürgermeister Belit Onay, auch Ministerpräsident Stephan Weil war dabei.',
+        ],
+      },
       { type: 'photo', photo: photo(60, 'Ein Polizist hält einen Mann am Boden fest'), size: 'wide' },
       {
         type: 'row',
@@ -262,13 +291,17 @@ const de: Story[] = [
           { photo: photo(62, 'Polizisten um eine Frau, die auf der Straße kniet') },
         ],
       },
+      {
+        type: 'text',
+        text: [
+          'Laut Polizei blieb es weitgehend friedlich. Am Rand des NPD-Zugs kam es immer wieder zu Rangeleien mit Gegendemonstranten, vier Menschen wurden festgenommen.',
+        ],
+      },
       { type: 'photo', photo: photo(61, 'Polizist mit Helm zwischen Fahnen'), size: 'full' },
       { type: 'photo', photo: photo(64, 'Reiterstaffel der Polizei auf einer Kreuzung'), size: 'narrow' },
       { type: 'photo', photo: photo(63, 'Grauer Himmel über dem Maschsee'), size: 'narrow', zoom: true },
       { type: 'photo', photo: photo(65, 'Lange Polizeikette bei Nacht'), size: 'full' },
       { type: 'drift', photos: [photo(67, 'Berittene Polizei bei Nacht neben einem Wasserwerfer'), photo(66, 'Polizeikette bei Nacht vor dem Neuen Rathaus')] },
-      { type: 'photo', photo: photo(68, 'Polizisten auf den Rolltreppen einer U-Bahn-Station'), size: 'full' },
-      { type: 'photo', photo: photo(69, 'Polizisten fahren die Rolltreppe hinunter'), size: 'narrow' },
     ],
   },
 ];
