@@ -29,6 +29,7 @@ let infoId = 0;
     {stories.map((s) => (
       <a href={base + s.path} aria-current={s.slug === slug ? 'page' : undefined}>{s.slug === 'wildfires' ? t.wildfires : t.olives}</a>
     ))}
+    <a href={base + t.aboutPath}>{t.about}</a>
     <a class="bar-lang" href={base + other.path} hreflang={lang === 'de' ? 'en' : 'de'} aria-label={t.otherLabel}>{t.other}</a>
   </nav>
   <span class="bar-progress" aria-hidden="true"></span>
@@ -230,7 +231,7 @@ let infoId = 0;
 </main>
 
 <footer class="foot">
-  <span>© Mehdi Alhasani</span>
+  <span>© Mehdi Al-Hasani</span>
   <a href={base + t.legalPath}>{t.legal}</a>
 </footer>
 
