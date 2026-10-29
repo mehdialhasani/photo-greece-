@@ -3,7 +3,7 @@ import type { Lang } from './stories';
 // Interface texts around the stories, per language
 export const ui = {
   de: {
-    home: 'Fotostorys',
+    home: 'Startseite',
     stories: 'Storys',
     wildfires: 'Waldbrände',
     olives: 'Olivenöl',
@@ -27,7 +27,7 @@ export const ui = {
     choose: 'Arbeiten',
   },
   en: {
-    home: 'Photo stories',
+    home: 'Home',
     stories: 'Stories',
     wildfires: 'Wildfires',
     olives: 'Olive oil',
