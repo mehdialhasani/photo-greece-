@@ -150,11 +150,12 @@ figure img { width: 100%; }
 
 /* Click to learn more. A: native disclosure under the photo; B: overlay on the photo */
 .more { margin-top: 14px; font: 400 .9375rem/1.6 var(--font-ui); }
-.more summary { display: inline-flex; align-items: center; gap: 10px; list-style: none; cursor: pointer; font-weight: 500; font-size: .8125rem; letter-spacing: .02em; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; transition: background-color .2s, border-color .2s; }
-.more summary::-webkit-details-marker { display: none; }
-.more summary::after { content: ''; width: 9px; height: 9px; background: linear-gradient(currentColor 0 0) center / 100% 1.5px no-repeat, linear-gradient(currentColor 0 0) center / 1.5px 100% no-repeat; transition: transform .3s var(--ease); }
-.more[open] summary::after { transform: rotate(45deg); }
-.more summary:hover { border-color: var(--ink); }
+.more summary, .gallery-more summary { display: inline-flex; align-items: center; gap: 12px; list-style: none; cursor: pointer; font: 600 .6875rem/1 var(--font-ui); letter-spacing: .16em; text-transform: uppercase; padding: 10px 0; transition: color .25s; }
+.more summary::-webkit-details-marker, .gallery-more summary::-webkit-details-marker { display: none; }
+.more summary::before, .gallery-more summary::before { content: ''; width: 24px; height: 1px; background: currentColor; transition: width .35s var(--ease); }
+.more summary:hover::before, .more[open] summary::before, .gallery-more summary:hover::before, .gallery-more[open] summary::before { width: 44px; }
+.more[open] summary, .gallery-more[open] summary { color: var(--accent); }
+.more summary:focus-visible, .gallery-more summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .more p { margin-top: 14px; max-width: 60ch; color: var(--ink); animation: drop .4s var(--ease); }
 .more-row { max-width: 660px; margin: 20px auto 0; text-align: center; }
 .more-row p { margin-inline: auto; }
@@ -245,9 +246,6 @@ figure img { width: 100%; }
 
 /* A: extra photos behind a button */
 .gallery-more { margin-top: 18px; }
-.gallery-more summary { display: inline-flex; list-style: none; cursor: pointer; font: 500 .8125rem/1 var(--font-ui); padding: 12px 18px; border-radius: 999px; background: var(--ink); color: var(--bg); transition: opacity .2s; }
-.gallery-more summary::-webkit-details-marker { display: none; }
-.gallery-more[open] summary { opacity: .5; }
 .gallery-grid { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: clamp(8px, 1.4vw, 20px); margin-top: 20px; align-items: start; animation: drop .5s var(--ease); }
 
 /* B: swipeable carousel */
